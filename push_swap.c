@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/17 15:37:48 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/18 12:17:17 by dximenes         ###   ########.fr       */
+/*   Created: 2025/05/17 17:27:10 by dximenes          #+#    #+#             */
+/*   Updated: 2025/05/18 12:17:19 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-int	main(int argc, char *argv[])
+int	push_swap(char *n)
 {
-	if (argc < 1)
-		return (0);
 	
-	return (0);
+	return (ft_atoi(n));
 }
