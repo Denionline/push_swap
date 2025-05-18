@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:38:54 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/18 21:18:39 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/19 00:08:58 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,14 @@
 # define PUSH_SWAP_H
 
 # include "libft/include/libft.h"
+
+typedef struct s_node
+{
+	size_t	index;
+	int		number;
+	t_list	*top;
+	t_list	*bottom;
+}	t_node;
 
 int		main(int argc, char *argv[]);
 int		push_swap(char *n);

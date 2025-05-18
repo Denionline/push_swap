@@ -55,9 +55,9 @@ MAKE		= make --no-print-directory
 #                                    Comands                                   #
 # **************************************************************************** #
 
-all: verify libft $(ARQUIVE)
+all: verify $(ARQUIVE)
 
-libft:
+libft: libft
 	@$(MAKE) -C $(LIBFT_PATH)
 
 $(ARQUIVE): $(OBJS) $(LIBFT)

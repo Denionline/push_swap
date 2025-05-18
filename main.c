@@ -6,39 +6,45 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:37:48 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/18 22:30:08 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/19 00:05:34 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-int	main(int argc, char *argv[])
+static char	**fh_getarray(int len, char **values)
 {
-	t_list	*head;
-	char	**values;
+	char	**array;
 	int		i;
 
 	i = 0;
+	if (len == 2)
+		return (ft_split(values[1], ' '));
+	array = ft_calloc(len + 1, sizeof(char *));
+	if (!array)
+		return (NULL);
+	while(values[++i])
+		array[i - 1] = ft_strdup(values[i]);
+	array[i] = NULL;
+	return (array);
+}
+
+int	main(int argc, char *argv[])
+{
+	t_list	*head;
+	char	**array;
+	int		i;
+
 	head = NULL;
-	values = NULL;
+	array = fh_getarray(argc, argv);
+	if (!array)
+		return (0);
 	if (argc <= 1)
 		return (0);
-	else if (argc == 2)
-	{
-		values = ft_split(argv[1], ' ');
-	}
-	else if (argc > 2)
-	{
-		while(argv[++i])
-			values[i - 1] = ft_strdup(argv[i]);
-		i = 0;
-	}
-	while (values[i])
-	{
-		ft_lstadd_back(&head, ft_lstnew(NULL, ft_atoi(values[i])));
-		free(values[i++]);
-	}
-	free(values);
+	i = -1;
+	while (array[++i])
+		ft_lstadd_back(&head, ft_lstnew(array[i], ft_atoi(array[i])));
 	ft_lstclear(&head, free);
+	free(array);
 	return (0);
 }
