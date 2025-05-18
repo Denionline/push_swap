@@ -1,5 +1,5 @@
 {
-  "C_Cpp_Runner.cCompilerPath": "gcc",
+  "C_Cpp_Runner.cCompilerPath": "cc",
   "C_Cpp_Runner.cppCompilerPath": "g++",
   "C_Cpp_Runner.debuggerPath": "gdb",
   "C_Cpp_Runner.cStandard": "",
@@ -8,36 +8,19 @@
   "C_Cpp_Runner.useMsvc": false,
   "C_Cpp_Runner.warnings": [
     "-Wall",
-    "-Wextra",
-    "-Wpedantic",
-    "-Wshadow",
-    "-Wformat=2",
-    "-Wcast-align",
-    "-Wconversion",
-    "-Wsign-conversion",
-    "-Wnull-dereference"
-  ],
-  "C_Cpp_Runner.msvcWarnings": [
-    "/W4",
-    "/permissive-",
-    "/w14242",
-    "/w14287",
-    "/w14296",
-    "/w14311",
-    "/w14826",
-    "/w44062",
-    "/w44242",
-    "/w14905",
-    "/w14906",
-    "/w14263",
-    "/w44265",
-    "/w14928"
+    "-Wextra"
   ],
   "C_Cpp_Runner.enableWarnings": true,
   "C_Cpp_Runner.warningsAsError": false,
   "C_Cpp_Runner.compilerArgs": [],
-  "C_Cpp_Runner.linkerArgs": [],
-  "C_Cpp_Runner.includePaths": [],
+  "C_Cpp_Runner.linkerArgs": [
+    "-L${workspaceFolder}/include/libft",
+    "-lft"
+  ],
+  "C_Cpp_Runner.includePaths": [
+    "${workspaceFolder}/include",
+    "${workspaceFolder}/include/libft"
+  ],
   "C_Cpp_Runner.includeSearch": [
     "*",
     "**/*"
@@ -59,5 +42,5 @@
   "files.associations": {
     "push_swap.h": "c",
     "libft.h": "c"
-  }
+  },
 }

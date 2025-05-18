@@ -2,14 +2,33 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "C/C++: Debug push_swap",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/push_swap",
+      "cwd": "${workspaceFolder}",
+      "args": [],
+      "stopAtEntry": false,
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    },
+    {
       "name": "C/C++ Runner: Debug Session",
       "type": "cppdbg",
       "request": "launch",
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/dximenes/x/m2/push_swap",
-      "program": "/home/dximenes/x/m2/push_swap/build/Debug/outDebug",
+      "cwd": "/home/denionline/x/push_swap",
+      "program": "/home/denionline/x/push_swap/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
