@@ -1,19 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_sa.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/17 17:27:10 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/18 21:59:52 by dximenes         ###   ########.fr       */
+/*   Created: 2025/05/18 21:42:43 by dximenes          #+#    #+#             */
+/*   Updated: 2025/05/18 21:59:43 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/push_swap.h"
-
-int	push_swap(char *n)
+void	ft_sa(void)
 {
-	
-	return (ft_atoi(n));
+	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:38:54 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/18 11:49:18 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/18 21:18:39 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,18 @@
 
 # include "libft/include/libft.h"
 
-typedef struct s_node
-{
-	int				value;
-	size_t			index;
-	struct s_node	*prev;
-	struct s_node	*next;
-} t_node;
+int		main(int argc, char *argv[]);
+int		push_swap(char *n);
 
-int	push_swap(char *n);
+//Operations
+void	ft_sa(void);
+void	ft_sb(void);
+void	ft_pa(void);
+void	ft_pb(void);
+void	ft_ra(void);
+void	ft_rb(void);
+void	ft_rra(void);
+void	ft_rrb(void);
+
 
 #endif
