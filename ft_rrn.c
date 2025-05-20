@@ -1,0 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_rrn.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/20 13:44:06 by dximenes          #+#    #+#             */
+/*   Updated: 2025/05/20 14:23:35 by dximenes         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "include/push_swap.h"
+
+void	ft_rrn(t_node **n)
+{
+	t_list	*temp;
+
+	temp = (*n)->bottom;
+	(*n)->bottom = (*n)->bottom->prev;
+	(*n)->bottom->next = NULL;
+	(*n)->top->next->prev = temp;
+	temp->next = (*n)->top;
+	(*n)->top = temp;
+	(*n)->top->prev = NULL;
+
+	ft_putstr_fd("rr", 1);
+	ft_putendl_fd((*n)->name, 1);
+}
