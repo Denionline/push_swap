@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_sn.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/17 17:27:10 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/20 11:44:49 by dximenes         ###   ########.fr       */
+/*   Created: 2025/05/18 21:42:43 by dximenes          #+#    #+#             */
+/*   Updated: 2025/05/20 12:51:08 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-void	push_swap(t_node **a, t_node **b)
+void	ft_sn(t_node **n)
 {
-	t_node	*t;
+	
+	t_list	*temp1;
+	t_list	*temp2;
 
-	t = *b;
-	ft_sn(a);
-	ft_pn(a, b);
+	temp1 = (*n)->top;
+	temp2 = (*n)->top->next;
+
+	temp1->prev = temp2;
+	temp1->next = temp2->next;
+
+	temp2->prev = NULL;
+	temp2->next = temp1;
+	(*n)->top = temp2;
+	(*n)->top->next = temp1;
+	ft_putchar_fd('s', 1);
+	ft_putendl_fd((*n)->name, 1);
 }
