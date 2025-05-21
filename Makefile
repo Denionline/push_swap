@@ -86,6 +86,6 @@ clean:
 
 fclean: clean
 	@rm -rf $(ARQUIVE) $(EXEC)
-	@$(MAKE) -C $(LIBFT_PATH) fclean
+# @$(MAKE) -C $(LIBFT_PATH) fclean
 
 re: fclean all

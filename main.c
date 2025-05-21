@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:37:48 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/20 14:26:47 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/21 15:00:43 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,20 @@ static void	fh_print(t_node *a, t_node *b)
 	atop = a->top;
 	btop = b->top;
 	printf("\n");
-	while (atop != NULL)
+	while (atop != NULL || btop != NULL)
 	{
-		printf(" %2s", (char *)atop->content);
+		if (atop && atop->content != NULL)
+			printf(" %3s", (char *)atop->content);
 		printf(" | ");
 		if (btop && btop->content != NULL)
-			printf("%2s", (char *)btop->content);
+			printf("%3s", (char *)btop->content);
 		printf("\n");
-		atop = atop->next;
+		if (atop && atop->content != NULL)
+			atop = atop->next;
 		if (btop && btop->content != NULL)
 			btop = btop->next;
 	}
-	printf("----|----\n");
+	printf("-----|-----\n");
 	printf("  a    b\n\n");
 }
 
