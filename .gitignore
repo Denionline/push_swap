@@ -1,7 +1,3 @@
 /include/libft
-build/Debug/outDebug
-build/Debug/ft_pn.o
-build/Debug/ft_rn.o
-build/Debug/ft_rrn.o
-build/Debug/outDebug
-build/Debug/push_swap.o
+.vscode/
+build/

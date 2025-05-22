@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:38:54 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/20 13:56:59 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/22 14:57:10 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,22 @@
 # include "stdio.h"
 # include "libft/include/libft.h"
 
-typedef struct s_node
+typedef struct s_stack
 {
 	char	*name;
-	size_t	length;
-	t_list	*top;
-	t_list	*bottom;
-}	t_node;
+	int		*array;
+	int		length;
+}	t_stack;
 
 int		main(int argc, char *argv[]);
-void	push_swap(t_node **a, t_node **b);
+void	push_swap(t_stack **a, t_stack **b);
 
 //Operations
-void	ft_sn(t_node **n);
-void	ft_pn(t_node **from, t_node **to);
-void	ft_rn(t_node **n);
-void	ft_rrn(t_node **n);
+void	ft_sn(t_stack **n);
+void	ft_pn(t_stack **from, t_stack **to);
+void	ft_rn(t_stack **n);
+void	ft_rrn(t_stack **n);
 
-
+//helpers
+void	fh_print(t_stack *a, t_stack *b);
 #endif

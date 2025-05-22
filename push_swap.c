@@ -6,67 +6,42 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:27:10 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/22 12:42:10 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/22 17:23:42 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-static void	fh_ordernodes(t_node **a, t_node **b)
+static void	fh_ordernodes(t_stack **a, t_stack **b)
 {
-	t_list	*current;
-
-	current = (*a)->top;
-	while (current->next)
+	// fh_print(*a, *b);
+	while ((*a)->length > 1)
 	{
-		if (current->number > current->next->number)
+		if ((*a)->array[0] > (*a)->array[1])
 			ft_rn(a);
-		else if (current->next && (*a)->top->number > (*a)->bottom->number)
-			ft_rrn(a);
 		else
 		{
 			ft_pn(a, b);
-			if ((*b)->top->next)
-			{
-				if ((*b)->top->number < (*b)->top->next->number)
-				{
-					ft_rn(b);
-				}
-			}
+			if ((*b)->array[0] < (*b)->array[1])
+				ft_rn(b);
 		}
-		current = (*a)->top;
+		// fh_print(*a, *b);
 	}
-	current = (*b)->top;
-	while (current != NULL)
+	while ((*b)->length > 0)
 	{
-		if (current->next && (*b)->top->number < (*b)->top->next->number)
+		if ((*b)->array[0] < (*b)->array[1])
 			ft_rn(b);
-		else if (current->next && (*b)->top->number < (*b)->bottom->number)
-			ft_rrn(b);
 		else
 		{
 			ft_pn(b, a);
-			if ((*a)->top->number > (*a)->top->next->number)
+			if ((*a)->array[0] > (*a)->array[1])
 				ft_sn(a);
 		}
-		current = (*b)->top;
+		// fh_print(*a, *b);
 	}
 }
 
-static int	fh_checkorder(t_list *lst)
+void	push_swap(t_stack **a, t_stack **b)
 {
-	// ft_putendl_fd("--------------------------------------------", 1);
-	while (lst->next)
-	{
-		if (lst->number > lst->next->number)
-			return (1);
-		lst = lst->next;
-	}
-	return (0);
-}
-
-void	push_swap(t_node **a, t_node **b)
-{
-	while (fh_checkorder((*a)->top))
-		fh_ordernodes(a, b);
+	fh_ordernodes(a, b);
 }

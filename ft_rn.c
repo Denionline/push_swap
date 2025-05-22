@@ -6,24 +6,21 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 12:52:52 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/22 11:12:53 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/22 14:22:08 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-void ft_rn(t_node ** n)
+void ft_rn(t_stack **n)
 {
-	t_list	*tomove;
+	int	tomove;
+	int	i;
 
-	tomove = (*n)->top;
-	(*n)->top = (*n)->top->next;
-	(*n)->top->prev = NULL;
-	tomove->prev = (*n)->bottom;
-	(*n)->bottom->next = tomove;
-	(*n)->bottom = tomove;
-	(*n)->bottom->next = NULL;
-
-	ft_putstr_fd("r", 1);
-	ft_putendl_fd((*n)->name, 1);
+	tomove = (*n)->array[0];
+	i = -1;
+	while (++i < (*n)->length)
+		(*n)->array[i] = (*n)->array[i + 1];
+	(*n)->array[i - 1] = tomove;
+	printf("r%s\n", (*n)->name);
 }

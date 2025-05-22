@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:37:48 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/22 12:14:31 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/22 16:43:44 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,65 +29,57 @@ static char	**fh_getarray(int len, char **values)
 	return (array);
 }
 
-static void	fh_newnode(t_node **node, t_node **sup, char **array)
+void	fh_print(t_stack *a, t_stack *b)
 {
-	t_list	*lst;
-	int		i;
-
-	lst = NULL;
-	i = -1;
-	while (array[++i])
-		ft_lstadd_back(&lst, ft_lstnew(array[i], ft_atoi(array[i])));
-	(*node) = malloc(sizeof(t_node));
-	(*sup) = malloc(sizeof(t_node));
-	if (!(*node) || !(*sup))
-		return ;
-	(*sup)->name = "b";
-	(*node)->name = "a";
-	(*node)->top = lst;
-	(*node)->bottom = ft_lstlast(lst);
-	(*node)->length = ft_lstsize(lst);
-	free(array);
+	printf("_______\n");
+	for (int i = 0; i < a->length; i++)
+	{
+		if (a->array[i])
+			printf("%3d", a->array[i]);
+		printf("|");
+		if (b->array[i])
+			printf("%-3d", b->array[i]);
+		printf("\n");
+	}
+	printf("___|___\n");
+	printf("_a___b_\n\n");
 }
 
-// static void	fh_print(t_node *a, t_node *b)
-// {
-// 	t_list	*atop;
-// 	t_list	*btop;
-
-// 	atop = a->top;
-// 	btop = b->top;
-// 	printf("\n");
-// 	while (atop != NULL || btop != NULL)
-// 	{
-// 		if (atop && atop->content != NULL)
-// 			printf(" %3s", (char *)atop->content);
-// 		printf(" | ");
-// 		if (btop && btop->content != NULL)
-// 			printf("%3s", (char *)btop->content);
-// 		printf("\n");
-// 		if (atop && atop->content != NULL)
-// 			atop = atop->next;
-// 		if (btop && btop->content != NULL)
-// 			btop = btop->next;
-// 	}
-// 	printf("-----|-----\n");
-// 	printf("  a    b\n\n");
-// }
+void	fh_initstack(t_stack **stack, char *name, size_t size)
+{
+	(*stack) = malloc(sizeof(t_stack));
+	(*stack)->array = malloc(size * sizeof(int));
+	(*stack)->length = size;
+	(*stack)->name = name;
+	if (*name == 'b')
+		(*stack)->length = 0;
+}
 
 int	main(int argc, char *argv[])
 {
-	t_node	*a;
-	t_node	*b;
+	t_stack		*a;
+	t_stack		*b;
+	char		**values;
+	int			size;
+	int			i;
 
 	if (argc <= 1)
 		return (0);
-	fh_newnode(&a, &b, fh_getarray(argc, argv));
+	values = fh_getarray(argc, argv);
+	size = 0;
+	while (values[size])
+		size++;
+	fh_initstack(&a, "a", size);
+	fh_initstack(&b, "b", size);
+
+	i = 0;
+	while (values[i])
+	{
+		a->array[i] = ft_atoi(values[i]);
+		free(values[i++]);
+	}
+	free(values);
 	push_swap(&a, &b);
 	// fh_print(a, b);
-	ft_lstclear(&a->top, free);
-	free(a);
-	ft_lstclear(&b->top, free);
-	free(b);
 	return (0);
 }
