@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 11:38:09 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/21 18:41:16 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/22 11:26:18 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,35 @@
 
 void ft_pn(t_node ** from, t_node ** to)
 {
-	t_list * tomoveto;
 	t_list * tomovefrom;
 
-	tomoveto = (*to)->top;
 	tomovefrom = (*from)->top;
 
-	(*to)->top = (*from)->top;
-	(*from)->top = (*from)->top->next;
+	if ((*from)->top->next)
+	{
+		(*from)->top = (*from)->top->next;
+		(*from)->top->prev = NULL;
+	}
+	else
+	{
+		(*from)->top = NULL;
+		(*from)->bottom = NULL;
+	}
 
-	
+	if ((*to)->top != NULL)
+	{
+		tomovefrom->next = (*to)->top;
+		(*to)->top->prev = tomovefrom;
+		(*to)->top = tomovefrom;
+	}
+	else
+	{
+		tomovefrom->next = NULL;
+		tomovefrom->prev = NULL;
+		(*to)->top = tomovefrom;
+		(*to)->bottom = tomovefrom;
+	}
+
 
 	ft_putstr_fd("p", 1);
 	ft_putendl_fd((*to)->name, 1);
