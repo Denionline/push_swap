@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:37:48 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/21 15:00:43 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/22 12:14:31 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,30 +50,30 @@ static void	fh_newnode(t_node **node, t_node **sup, char **array)
 	free(array);
 }
 
-static void	fh_print(t_node *a, t_node *b)
-{
-	t_list	*atop;
-	t_list	*btop;
+// static void	fh_print(t_node *a, t_node *b)
+// {
+// 	t_list	*atop;
+// 	t_list	*btop;
 
-	atop = a->top;
-	btop = b->top;
-	printf("\n");
-	while (atop != NULL || btop != NULL)
-	{
-		if (atop && atop->content != NULL)
-			printf(" %3s", (char *)atop->content);
-		printf(" | ");
-		if (btop && btop->content != NULL)
-			printf("%3s", (char *)btop->content);
-		printf("\n");
-		if (atop && atop->content != NULL)
-			atop = atop->next;
-		if (btop && btop->content != NULL)
-			btop = btop->next;
-	}
-	printf("-----|-----\n");
-	printf("  a    b\n\n");
-}
+// 	atop = a->top;
+// 	btop = b->top;
+// 	printf("\n");
+// 	while (atop != NULL || btop != NULL)
+// 	{
+// 		if (atop && atop->content != NULL)
+// 			printf(" %3s", (char *)atop->content);
+// 		printf(" | ");
+// 		if (btop && btop->content != NULL)
+// 			printf("%3s", (char *)btop->content);
+// 		printf("\n");
+// 		if (atop && atop->content != NULL)
+// 			atop = atop->next;
+// 		if (btop && btop->content != NULL)
+// 			btop = btop->next;
+// 	}
+// 	printf("-----|-----\n");
+// 	printf("  a    b\n\n");
+// }
 
 int	main(int argc, char *argv[])
 {
@@ -84,7 +84,7 @@ int	main(int argc, char *argv[])
 		return (0);
 	fh_newnode(&a, &b, fh_getarray(argc, argv));
 	push_swap(&a, &b);
-	fh_print(a, b);
+	// fh_print(a, b);
 	ft_lstclear(&a->top, free);
 	free(a);
 	ft_lstclear(&b->top, free);
