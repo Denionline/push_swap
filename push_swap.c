@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:27:10 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/22 17:23:42 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/22 17:47:01 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 static void	fh_ordernodes(t_stack **a, t_stack **b)
 {
-	// fh_print(*a, *b);
 	while ((*a)->length > 1)
 	{
 		if ((*a)->array[0] > (*a)->array[1])
 			ft_rn(a);
+		else if ((*a)->array[0] > (*a)->array[(*a)->length - 1])
+			ft_rrn(a);
 		else
 		{
 			ft_pn(a, b);
 			if ((*b)->array[0] < (*b)->array[1])
 				ft_rn(b);
 		}
-		// fh_print(*a, *b);
 	}
 	while ((*b)->length > 0)
 	{
@@ -37,7 +37,6 @@ static void	fh_ordernodes(t_stack **a, t_stack **b)
 			if ((*a)->array[0] > (*a)->array[1])
 				ft_sn(a);
 		}
-		// fh_print(*a, *b);
 	}
 }
 

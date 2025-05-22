@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:37:48 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/22 16:43:44 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/22 18:14:21 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,19 @@ int	main(int argc, char *argv[])
 	char		**values;
 	int			size;
 	int			i;
+	int			toprint;
 
 	if (argc <= 1)
 		return (0);
+	toprint = 0;
+	if (*argv[1] == 'p')
+		toprint = *(argv++) != NULL;
 	values = fh_getarray(argc, argv);
 	size = 0;
 	while (values[size])
 		size++;
 	fh_initstack(&a, "a", size);
 	fh_initstack(&b, "b", size);
-
 	i = 0;
 	while (values[i])
 	{
@@ -80,6 +83,7 @@ int	main(int argc, char *argv[])
 	}
 	free(values);
 	push_swap(&a, &b);
-	// fh_print(a, b);
+	if (toprint)
+		fh_print(a, b);
 	return (0);
 }
