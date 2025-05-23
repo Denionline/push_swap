@@ -102,6 +102,11 @@ cop:
 	@printf "\nTest 5:\n"
 	@./$(EXEC) $(TEST5) | ./countop.sh
 
+help:
+	@printf "\n$(C_MAGENTA)MAKE TYPES$(C_STD)\n\n"
+	@printf "[$(C_GREEN)pr$(C_STD)] = Print the sorted array;\n"
+	@printf "[$(C_GREEN)cop$(C_STD)] = Show the amount of each operation.\n\n"
+
 verify:
 	@if test ! -d "$(LIBFT_PATH)"; then $(MAKE) get_libft; \
 		else printf "\n$(C_GREEN)Libft folder exist!$(C_STD)\n\n"; fi
