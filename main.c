@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:37:48 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/23 14:46:07 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/24 18:18:54 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void	fh_print(t_stack *a, t_stack *b, int amount)
 			printf("|");
 		if (i < b->length)
 			printf("%-3d", b->array[i]);
-		printf("\n");
+		if (i < a->length || i < b->length)
+			printf("\n");
 	}
 	printf("-------\n");
 	printf(" a | b \n\n");
@@ -56,8 +57,10 @@ void	fh_initstack(t_stack **stack, char *name, size_t size)
 		(*stack)->length = 0;
 }
 
-static int	fh_issrted(t_stack *a)
+static int	fh_issrted(t_stack *a, t_stack *b)
 {
+	if (b->length > 0)
+		return (0);
 	for (int i = 0; i < a->length; i++)
 	{
 		for (int j = i; j < a->length; j++)
@@ -66,6 +69,7 @@ static int	fh_issrted(t_stack *a)
 				return (0);
 		}
 	}
+	
 	return (1);
 }
 
@@ -99,7 +103,7 @@ int	main(int argc, char *argv[])
 	push_swap(&a, &b);
 	if (toprint)
 		fh_print(a, b, size);
-	if (fh_issrted(a))
+	if (fh_issrted(a, b))
 		printf("\033[0;92mIs sorted :D\033[0;39m\n\n");
 	else
 		printf("\033[0;91mIs NOT sorted :(\033[0;39m\n\n");

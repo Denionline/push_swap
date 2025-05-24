@@ -21,6 +21,12 @@ ARQUIVE		= binary.a
 LIBFT		= $(LIBFT_PATH)libft.a
 
 # **************************************************************************** #
+#                                    Git                                       #
+# **************************************************************************** #
+
+LIBFT_URL	= https://github.com/Denionline/Libft.git
+
+# **************************************************************************** #
 #                                    Path's                                    #
 # **************************************************************************** #
 
@@ -63,6 +69,7 @@ TEST5		= 235 815 1 97 540 786 783 656 997 466 962 788 926 275 13 546 166 233 550
 # **************************************************************************** #
 
 all: verify $(LIBFT) $(ARQUIVE)
+	@$(MAKE) --quiet build && echo "✅ Tudo está atualizado!"
 
 $(LIBFT):
 	@$(MAKE) -C $(LIBFT_PATH)
@@ -74,7 +81,7 @@ $(ARQUIVE): $(OBJS) $(LIBFT)
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -I $(INC) -c $< -o $@
-	@printf ""
+	@printf "Compiling $(C_YELLOW)$<$(C_STD)...\n"
 
 pr:
 	@clear
@@ -120,7 +127,7 @@ update_modules:
 
 get_libft:
 	@echo "Cloning Libft"
-	@git clone https://github.com/Denionline/Libft.git $(LIBFT_PATH)
+	@git clone $(LIBFT_URL) $(LIBFT_PATH)
 	@echo "Libft clone successfully downloaded"
 
 clean:
@@ -128,6 +135,5 @@ clean:
 
 fclean: clean
 	@rm -rf $(ARQUIVE) $(EXEC)
-# @$(MAKE) -C $(LIBFT_PATH) fclean
 
 re: fclean all
