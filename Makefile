@@ -69,7 +69,7 @@ TEST5		= 235 815 1 97 540 786 783 656 997 466 962 788 926 275 13 546 166 233 550
 # **************************************************************************** #
 
 all: verify $(LIBFT) $(ARQUIVE)
-	@$(MAKE) --quiet build && echo "✅ Tudo está atualizado!"
+	@echo "✅ Tudo está atualizado!"
 
 $(LIBFT):
 	@$(MAKE) -C $(LIBFT_PATH)

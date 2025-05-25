@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:37:48 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/24 18:18:54 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/25 12:08:25 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,24 @@ static char	**fh_getarray(int len, char **values)
 
 void	fh_print(t_stack *a, t_stack *b, int amount)
 {
-	printf("-------\n");
+	printf("---------------\n");
 	for (int i = 0; i < amount; i++)
 	{
 		if (i < a->length)
-			printf("%3d", a->array[i]);
+			printf("%7d", a->array[i]);
+		else
+			printf("%7s", "");
 		if (i < a->length || i < b->length)
 			printf("|");
 		if (i < b->length)
-			printf("%-3d", b->array[i]);
+			printf("%-7d", b->array[i]);
+		else
+			printf("%-7s", "");
 		if (i < a->length || i < b->length)
 			printf("\n");
 	}
-	printf("-------\n");
-	printf(" a | b \n\n");
+	printf("---------------\n");
+	printf("   a   |   b   \n\n");
 }
 
 void	fh_initstack(t_stack **stack, char *name, size_t size)
@@ -103,9 +107,9 @@ int	main(int argc, char *argv[])
 	push_swap(&a, &b);
 	if (toprint)
 		fh_print(a, b, size);
-	if (fh_issrted(a, b))
+	if (toprint && fh_issrted(a, b))
 		printf("\033[0;92mIs sorted :D\033[0;39m\n\n");
-	else
+	else if (toprint)
 		printf("\033[0;91mIs NOT sorted :(\033[0;39m\n\n");
 	return (0);
 }

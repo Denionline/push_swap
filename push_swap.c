@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:27:10 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/24 18:59:05 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/25 15:51:41 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,20 @@ void	push_swap(t_stack **a, t_stack **b)
 	int	lessn;
 	int	lesspos;
 	int	len;
+	int	diff;
 	int	i;
-	int	j;
 
-	len = (*a)->length;
 	ft_pn(a, b);
 	ft_pn(a, b);
+	if ((*b)->array[0] < (*b)->array[1])
+	ft_sn(b);
 	while ((*a)->length > 0)
 	{
+		len = (*a)->length;
 		lesspos = 0;
 		lessn = (*a)->array[0];
 		i = 0;
-		while (len--)
+		while (i < len)
 		{
 			if ((*a)->array[i] < lessn)
 			{
@@ -37,24 +39,13 @@ void	push_swap(t_stack **a, t_stack **b)
 			}
 			i++;
 		}
+		diff = (len - lesspos);
 		if (lesspos > ((*a)->length / 2))
-		{
-			j = lesspos - ((*a)->length / 2);
-			while (j--)
+			while (diff-- > 0)
 				ft_rrn(a);
-		}
-		else if (lesspos < ((*a)->length / 2))
-		{
-			j = ((*a)->length / 2) - lesspos;
-			while (j--)
-				ft_rn(a);
-		}
 		else
-		{
-			j = lesspos + 1;
-			while (j--)
+			while (lesspos-- > 0)
 				ft_rn(a);
-		}
 		if ((*a)->array[0] > (*b)->array[0])
 			ft_pn(a, b);
 		else if ((*a)->array[0] < (*b)->array[(*b)->length - 1])
