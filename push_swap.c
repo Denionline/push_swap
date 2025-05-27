@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:27:10 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/27 13:05:54 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/27 13:53:10 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,10 @@ static void check_reverse(t_stack ** a, t_stack ** b, int lesser, int moves, int
 void push_swap(t_stack ** a, t_stack ** b, int print)
 {
 	int lesser_moves;
-	int lesser_pos;
 	int lesser;
 	int i;
 
+	fh_print(*a, *b, (*a)->length);
 	pn(a, b, print);
 	pn(a, b, print);
 	while ((*a)->length > 3)
@@ -109,5 +109,6 @@ void push_swap(t_stack ** a, t_stack ** b, int print)
 		}
 		check_reverse(a, b, lesser, lesser_moves, print);
 		pn(a, b, print);
+		fh_print(*a, *b, (*a)->length  > (*b)->length ? (*a)->length : (*b)->length);
 	}
 }

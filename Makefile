@@ -124,8 +124,8 @@ verify:
 
 update_modules:
 	@printf "$(C_BLUE)Updating repository...$(C_STD)\n"
-	@git submodule init
-	@git submodule update --recursive --remote
+# @git submodule init
+# @git submodule update --recursive --remote
 	@printf "$(C_BLUE)Repository updated!$(C_STD)\n\n"
 
 get_libft:

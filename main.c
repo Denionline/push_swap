@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:37:48 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/26 13:45:45 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/27 13:51:15 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ void	fh_print(t_stack *a, t_stack *b, int amount)
 			printf("%-7d\n", b->array[i]);
 		else
 			printf("%-7s\n", "");
-		// if (i < a->length || i < b->length)
-		// 	printf("\n");
 	}
 	printf("---------------\n");
 	printf("   a   |   b   \n\n");
