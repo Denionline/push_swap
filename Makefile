@@ -21,6 +21,12 @@ ARQUIVE		= binary.a
 LIBFT		= $(LIBFT_PATH)libft.a
 
 # **************************************************************************** #
+#                                    Git                                       #
+# **************************************************************************** #
+
+LIBFT_URL	= https://github.com/Denionline/Libft.git
+
+# **************************************************************************** #
 #                                    Path's                                    #
 # **************************************************************************** #
 
@@ -29,10 +35,13 @@ LIBFT_PATH	= $(INC)/libft/
 
 FILES		+= main
 FILES		+= push_swap
-FILES		+= ft_sn
-FILES		+= ft_pn
-FILES		+= ft_rn
-FILES		+= ft_rrn
+FILES		+= sn
+FILES		+= ss
+FILES		+= pn
+FILES		+= rn
+FILES		+= rr
+FILES		+= rrn
+FILES		+= rrr
 
 SRC_FILES	= $(addprefix ./, $(FILES))
 SRCS		= $(addprefix ./, $(addsuffix .c, $(SRC_FILES)))
@@ -63,6 +72,7 @@ TEST5		= 235 815 1 97 540 786 783 656 997 466 962 788 926 275 13 546 166 233 550
 # **************************************************************************** #
 
 all: verify $(LIBFT) $(ARQUIVE)
+	@echo "✅ Tudo está atualizado!"
 
 $(LIBFT):
 	@$(MAKE) -C $(LIBFT_PATH)
@@ -74,7 +84,7 @@ $(ARQUIVE): $(OBJS) $(LIBFT)
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -I $(INC) -c $< -o $@
-	@printf ""
+	@printf "Compiling $(C_YELLOW)$<$(C_STD)...\n"
 
 pr:
 	@clear
@@ -114,13 +124,13 @@ verify:
 
 update_modules:
 	@printf "$(C_BLUE)Updating repository...$(C_STD)\n"
-	@git submodule init
-	@git submodule update --recursive --remote
+# @git submodule init
+# @git submodule update --recursive --remote
 	@printf "$(C_BLUE)Repository updated!$(C_STD)\n\n"
 
 get_libft:
 	@echo "Cloning Libft"
-	@git clone https://github.com/Denionline/Libft.git $(LIBFT_PATH)
+	@git clone $(LIBFT_URL) $(LIBFT_PATH)
 	@echo "Libft clone successfully downloaded"
 
 clean:
@@ -128,6 +138,5 @@ clean:
 
 fclean: clean
 	@rm -rf $(ARQUIVE) $(EXEC)
-# @$(MAKE) -C $(LIBFT_PATH) fclean
 
 re: fclean all

@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rn.c                                            :+:      :+:    :+:   */
+/*   rrn.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 12:52:52 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/23 14:03:30 by dximenes         ###   ########.fr       */
+/*   Created: 2025/05/20 13:44:06 by dximenes          #+#    #+#             */
+/*   Updated: 2025/05/26 12:22:05 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-void ft_rn(t_stack **n)
+void	rrn(t_stack **n, int toprint)
 {
 	int	tomove;
 	int	i;
 
-	tomove = (*n)->array[0];
-	i = -1;
-	while (++i < (*n)->length)
-		(*n)->array[i] = (*n)->array[i + 1];
-	(*n)->array[i - 1] = tomove;
-	printf("r%s\n", (*n)->name);
+	tomove = (*n)->array[(*n)->length - 1];
+	i = (*n)->length + 1;
+	while (--i > 0)
+		(*n)->array[i] = (*n)->array[i - 1];
+	(*n)->array[0] = tomove;
+	if (toprint)
+		printf("rr%s\n", (*n)->name);
 }

@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:37:48 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/23 14:46:07 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/27 13:51:15 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,22 @@ static char	**fh_getarray(int len, char **values)
 
 void	fh_print(t_stack *a, t_stack *b, int amount)
 {
-	printf("-------\n");
+	printf("---------------\n");
 	for (int i = 0; i < amount; i++)
 	{
 		if (i < a->length)
-			printf("%3d", a->array[i]);
+			printf("%7d", a->array[i]);
+		else
+			printf("%7s", "");
 		if (i < a->length || i < b->length)
 			printf("|");
 		if (i < b->length)
-			printf("%-3d", b->array[i]);
-		printf("\n");
+			printf("%-7d\n", b->array[i]);
+		else
+			printf("%-7s\n", "");
 	}
-	printf("-------\n");
-	printf(" a | b \n\n");
+	printf("---------------\n");
+	printf("   a   |   b   \n\n");
 }
 
 void	fh_initstack(t_stack **stack, char *name, size_t size)
@@ -56,8 +59,10 @@ void	fh_initstack(t_stack **stack, char *name, size_t size)
 		(*stack)->length = 0;
 }
 
-static int	fh_issrted(t_stack *a)
+static int	fh_issrted(t_stack *a, t_stack *b)
 {
+	if (b->length > 0)
+		return (0);
 	for (int i = 0; i < a->length; i++)
 	{
 		for (int j = i; j < a->length; j++)
@@ -66,6 +71,7 @@ static int	fh_issrted(t_stack *a)
 				return (0);
 		}
 	}
+	
 	return (1);
 }
 
@@ -96,12 +102,12 @@ int	main(int argc, char *argv[])
 		free(values[i++]);
 	}
 	free(values);
-	push_swap(&a, &b);
+	push_swap(&a, &b, !toprint);
 	if (toprint)
-		fh_print(a, b, size);
-	if (fh_issrted(a))
+		fh_print(a, b, a->length > b->length ? a->length : b->length);
+	if (toprint && fh_issrted(a, b))
 		printf("\033[0;92mIs sorted :D\033[0;39m\n\n");
-	else
+	else if (toprint)
 		printf("\033[0;91mIs NOT sorted :(\033[0;39m\n\n");
 	return (0);
 }
