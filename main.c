@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:37:48 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/27 13:51:15 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/27 18:25:54 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	main(int argc, char *argv[])
 		free(values[i++]);
 	}
 	free(values);
-	push_swap(&a, &b, !toprint);
+	push_swap(a, b, !toprint);
 	if (toprint)
 		fh_print(a, b, a->length > b->length ? a->length : b->length);
 	if (toprint && fh_issrted(a, b))

@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:27:10 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/27 14:07:58 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/27 18:27:20 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,30 +85,30 @@ static void check_reverse(t_stack ** a, t_stack ** b, int lesser, int moves, int
 	rotate(b, moves_b, print);
 }
 
-void push_swap(t_stack ** a, t_stack ** b, int print)
+void push_swap(t_stack * a, t_stack * b, int print)
 {
 	int lesser_moves;
 	int lesser;
 	int i;
 
-	fh_print(*a, *b, (*a)->length);
-	pn(a, b, print);
-	pn(a, b, print);
-	while ((*a)->length > 3)
+	fh_print(a, b, a->length);
+	pn(&a, &b, print);
+	pn(&a, &b, print);
+	while (a->length > 3)
 	{
 		i = 0;
-		lesser = (*a)->array[i];
-		lesser_moves = calc_moves(*a, *b, lesser);
-		while (++i < (*a)->length)
+		lesser = a->array[i];
+		lesser_moves = calc_moves(a, b, lesser);
+		while (++i < a->length)
 		{
-			if (lesser_moves > calc_moves(*a, *b, (*a)->array[i]))
+			if (lesser_moves > calc_moves(a, b, a->array[i]))
 			{
-				lesser = (*a)->array[i];
-				lesser_moves = calc_moves(*a, *b, lesser);
+				lesser = a->array[i];
+				lesser_moves = calc_moves(a, b, lesser);
 			}
 		}
-		check_reverse(a, b, lesser, lesser_moves, print);
-		pn(a, b, print);
-		fh_print(*a, *b, (*a)->length  > (*b)->length ? (*a)->length : (*b)->length);
+		check_reverse(&a, &b, lesser, lesser_moves, print);
+		pn(&a, &b, print);
+		fh_print(a, b, a->length  > b->length ? a->length : b->length);
 	}
 }

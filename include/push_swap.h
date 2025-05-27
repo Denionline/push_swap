@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:38:54 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/26 13:40:39 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/27 18:27:40 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_stack
 }	t_stack;
 
 int		main(int argc, char *argv[]);
-void push_swap(t_stack **a, t_stack **b, int print);
+void push_swap(t_stack *a, t_stack *b, int print);
 
 //Operations
 void	sn(t_stack **n, int toprint);
