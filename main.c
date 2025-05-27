@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:37:48 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/25 12:08:25 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/26 13:45:45 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ void	fh_print(t_stack *a, t_stack *b, int amount)
 		if (i < a->length || i < b->length)
 			printf("|");
 		if (i < b->length)
-			printf("%-7d", b->array[i]);
+			printf("%-7d\n", b->array[i]);
 		else
-			printf("%-7s", "");
-		if (i < a->length || i < b->length)
-			printf("\n");
+			printf("%-7s\n", "");
+		// if (i < a->length || i < b->length)
+		// 	printf("\n");
 	}
 	printf("---------------\n");
 	printf("   a   |   b   \n\n");
@@ -104,9 +104,9 @@ int	main(int argc, char *argv[])
 		free(values[i++]);
 	}
 	free(values);
-	push_swap(&a, &b);
+	push_swap(&a, &b, !toprint);
 	if (toprint)
-		fh_print(a, b, size);
+		fh_print(a, b, a->length > b->length ? a->length : b->length);
 	if (toprint && fh_issrted(a, b))
 		printf("\033[0;92mIs sorted :D\033[0;39m\n\n");
 	else if (toprint)

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pn.c                                            :+:      :+:    :+:   */
+/*   pn.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 11:38:09 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/22 16:56:00 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/26 12:22:23 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-void ft_pn(t_stack **from, t_stack **to)
+void pn(t_stack **from, t_stack **to, int toprint)
 {
 	int	temp;
 	int	i;
@@ -26,5 +26,6 @@ void ft_pn(t_stack **from, t_stack **to)
 	while (--i > 0) 
 		(*to)->array[i] = (*to)->array[i - 1];
 	(*to)->array[0] = temp;
-	printf("p%s\n", (*to)->name);
+	if (toprint)
+		printf("p%s\n", (*to)->name);
 }

@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:38:54 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/23 14:21:31 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/26 13:40:39 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include "stdio.h"
 # include "libft/include/libft.h"
 
+# define TRUE 1
+# define FALSE 0
+
 typedef struct s_stack
 {
 	char	*name;
@@ -24,13 +27,17 @@ typedef struct s_stack
 }	t_stack;
 
 int		main(int argc, char *argv[]);
-void	push_swap(t_stack **a, t_stack **b);
+void push_swap(t_stack **a, t_stack **b, int print);
 
 //Operations
-void	ft_sn(t_stack **n);
-void	ft_pn(t_stack **from, t_stack **to);
-void	ft_rn(t_stack **n);
-void	ft_rrn(t_stack **n);
+void	sn(t_stack **n, int toprint);
+void	ss(t_stack **a, t_stack **b, int toprint);
+void	pn(t_stack **from, t_stack **to, int toprint);
+void	rn(t_stack **n, int toprint);
+void	rr(t_stack **a, t_stack **b, int toprint);
+void	rrn(t_stack **n, int toprint);
+void	rrr(t_stack **a, t_stack **b, int toprint);
+
 
 //helpers
 void	fh_print(t_stack *a, t_stack *b, int amount);

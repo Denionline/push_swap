@@ -6,81 +6,75 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:27:10 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/25 23:48:20 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/27 10:16:16 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-void push_swap(t_stack ** a, t_stack ** b)
+static int get_pos(t_stack * n, int number)
 {
-	int number;
-	int numberpos;
-	int len;
-	int diff;
+	int pos;
+
+	pos = -1;
+	while (++pos < n->length)
+		if (n->array[pos] == number)
+			break;
+	return (pos);
+}
+
+static int is_reverse(t_stack *n, int moves)
+{
+	if (moves > (n->length / 2))
+		return (0);
+	return (1);
+}
+
+static int calc_moves(t_stack * a, t_stack * b, int number)
+{
+	int less_number;
+	int moves_a;
+	int moves_b;
 	int i;
 
-	ft_pn(a, b);
-	ft_pn(a, b);
-	if ((*b)->array[0] < (*b)->array[1])
-		ft_sn(b);
-	while ((*a)->length > 0)
+	less_number = number;
+	i = -1;
+	while (++i < b->length)
+		if (b->array[i] < less_number)
+			less_number = b->array[i];
+	moves_a = get_pos(a, number);
+	moves_b = get_pos(b, less_number);
+	if (is_reverse(a, moves_a))
+		moves_a -= a->length;
+	if (is_reverse(b, moves_b))
+		moves_b -= b->length;
+	if (is_reverse(a, moves_a) == is_reverse(b, moves_b))
 	{
-		len = (*a)->length;
-		numberpos = 0;
-		number = (*a)->array[0];
-		i = 0;
-		while (i < len)
-		{
-			if ((*a)->array[i] < number)
-			{
-				number = (*a)->array[i];
-				numberpos = i;
-			}
-			i++;
-		}
-		diff = (len - numberpos);
-		if (numberpos > ((*a)->length / 2))
-			while (diff-- > 0)
-				ft_rrn(a);
-		else
-			while (numberpos-- > 0)
-				ft_rn(a);
-		if ((*a)->array[0] > (*b)->array[0])
-			ft_pn(a, b);
-		else if ((*a)->array[0] < (*b)->array[(*b)->length - 1])
-		{
-			ft_pn(a, b);
-			ft_rn(b);
-		}
-		else
-		{
-			ft_pn(a, b);
-			ft_sn(b);
-		}
+		if (moves_a > moves_b)
+			return (moves_a - moves_b + 1);
+		return (moves_b - moves_a + 1);
 	}
-	while ((*b)->length > 0)
+	return (moves_a + moves_b + 1);
+}
+
+void push_swap(t_stack ** a, t_stack ** b, int print)
+{
+	int lesser;
+	int lesser_pos;
+	int lesser_moves;
+	int i;
+
+	pn(a, b, print);
+	pn(a, b, print);
+	while ((*a)->length > 3)
 	{
-		len = (*b)->length;
-		numberpos = 0;
-		number = (*b)->array[0];
 		i = 0;
-		while (i < len)
+		lesser = (*a)->array[i];
+		lesser_moves = calc_moves(*a, *b, lesser);
+		while (++i < (*a)->length)
 		{
-			if ((*b)->array[i] > number)
-			{
-				number = (*b)->array[i];
-				numberpos = i;
-			}
-			i++;
+			if (lesser_moves > calc_moves(*a, *b, (*a)->array[i]))
+				lesser = (*a)->array[i];
 		}
-		diff = (len - numberpos);
-		if (numberpos > ((*b)->length / 2))
-			while (diff-- > 0)
-				ft_rrn(b);
-		else
-			while (numberpos-- > 0)
-				ft_rn(b);
-		ft_pn(b, a);
 	}
 }

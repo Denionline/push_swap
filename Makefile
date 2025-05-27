@@ -35,10 +35,13 @@ LIBFT_PATH	= $(INC)/libft/
 
 FILES		+= main
 FILES		+= push_swap
-FILES		+= ft_sn
-FILES		+= ft_pn
-FILES		+= ft_rn
-FILES		+= ft_rrn
+FILES		+= sn
+FILES		+= ss
+FILES		+= pn
+FILES		+= rn
+FILES		+= rr
+FILES		+= rrn
+FILES		+= rrr
 
 SRC_FILES	= $(addprefix ./, $(FILES))
 SRCS		= $(addprefix ./, $(addsuffix .c, $(SRC_FILES)))
