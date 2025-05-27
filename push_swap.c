@@ -6,49 +6,46 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:27:10 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/27 10:16:16 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/27 13:05:54 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-static int get_pos(t_stack * n, int number)
-{
-	int pos;
-
-	pos = -1;
-	while (++pos < n->length)
-		if (n->array[pos] == number)
-			break;
-	return (pos);
-}
-
-static int is_reverse(t_stack *n, int moves)
-{
-	if (moves > (n->length / 2))
-		return (0);
-	return (1);
-}
-
-static int calc_moves(t_stack * a, t_stack * b, int number)
+static int get_pos(t_stack * a, t_stack * b, int number, int searchlesser)
 {
 	int less_number;
-	int moves_a;
-	int moves_b;
+	int pos;
 	int i;
 
 	less_number = number;
 	i = -1;
-	while (++i < b->length)
+	while (searchlesser && ++i < b->length)
 		if (b->array[i] < less_number)
 			less_number = b->array[i];
-	moves_a = get_pos(a, number);
-	moves_b = get_pos(b, less_number);
-	if (is_reverse(a, moves_a))
+	pos = -1;
+	while (++pos < a->length)
+		if (a->array[pos] == number)
+			break;
+	return (pos);
+}
+
+static int calc_moves(t_stack * a, t_stack * b, int number)
+{
+	int moves_a;
+	int moves_b;
+	int pos_a;
+	int pos_b;
+
+	pos_a = get_pos(a, b, number, FALSE);
+	pos_b = get_pos(a, b, number, TRUE);
+	moves_a = pos_a;
+	if (pos_a > (a->length / 2))
 		moves_a -= a->length;
-	if (is_reverse(b, moves_b))
+	moves_b = pos_b;
+	if (pos_b > (b->length / 2))
 		moves_b -= b->length;
-	if (is_reverse(a, moves_a) == is_reverse(b, moves_b))
+	if ((pos_a > (a->length / 2)) == (pos_b > (b->length / 2)))
 	{
 		if (moves_a > moves_b)
 			return (moves_a - moves_b + 1);
@@ -57,11 +54,42 @@ static int calc_moves(t_stack * a, t_stack * b, int number)
 	return (moves_a + moves_b + 1);
 }
 
+static void rotate(t_stack ** n, int moves, int print)
+{
+	if (moves > ((*n)->length / 2))
+		while ((moves++ - (*n)->length) > 0)
+			rrn(n, print);
+	else
+		while (moves--)
+			rn(n, print);
+}
+
+static void check_reverse(t_stack ** a, t_stack ** b, int lesser, int moves, int print)
+{
+	int moves_a;
+	int moves_b;
+
+	moves_a = get_pos(*a, *b, lesser, FALSE);
+	moves_b = get_pos(*a, *b, lesser, TRUE);
+	if ((moves_a > ((*a)->length / 2)) == (moves_b > ((*b)->length / 2)))
+	{
+		if ((moves_a > ((*a)->length / 2)) && (moves_b > ((*b)->length / 2)))
+			while (moves-- > 0)
+				rrr(a, b, print);
+		else
+			while (moves-- > 0)
+				rr(a, b, print);
+		return ;
+	}
+	rotate(a, moves_a, print);
+	rotate(b, moves_b, print);
+}
+
 void push_swap(t_stack ** a, t_stack ** b, int print)
 {
-	int lesser;
-	int lesser_pos;
 	int lesser_moves;
+	int lesser_pos;
+	int lesser;
 	int i;
 
 	pn(a, b, print);
@@ -74,7 +102,12 @@ void push_swap(t_stack ** a, t_stack ** b, int print)
 		while (++i < (*a)->length)
 		{
 			if (lesser_moves > calc_moves(*a, *b, (*a)->array[i]))
+			{
+				lesser_moves = calc_moves(*a, *b, lesser);
 				lesser = (*a)->array[i];
+			}
 		}
+		check_reverse(a, b, lesser, lesser_moves, print);
+		pn(a, b, print);
 	}
 }
