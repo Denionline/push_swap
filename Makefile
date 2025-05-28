@@ -42,6 +42,8 @@ FILES		+= rn
 FILES		+= rr
 FILES		+= rrn
 FILES		+= rrr
+FILES		+= calc_moves
+FILES		+= get_pos
 
 SRC_FILES	= $(addprefix ./, $(FILES))
 SRCS		= $(addprefix ./, $(addsuffix .c, $(SRC_FILES)))

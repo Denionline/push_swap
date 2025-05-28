@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:37:48 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/27 18:25:54 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/28 11:53:46 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	fh_print(t_stack *a, t_stack *b, int amount)
 			printf("%-7s\n", "");
 	}
 	printf("---------------\n");
-	printf("   a   |   b   \n\n");
+	printf("   a   |   b   \n");
 }
 
 void	fh_initstack(t_stack **stack, char *name, size_t size)
