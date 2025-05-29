@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 12:37:08 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/28 18:16:42 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:11:47 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,29 +38,19 @@ static int get_lesser(t_stack * n, int number)
 int get_pos(t_stack * n, int number, int searchbetween)
 {
 	int pos;
+	int	newpos;
 
+	newpos = number;
 	if (searchbetween)
-		number = get_lesser(n, number);
-	pos = -1;
-	while (++pos < n->length)
-		if (n->array[pos] == number)
-			break;
+		newpos = get_lesser(n, number);
+	pos = 0;
+	while (pos < n->length)
+	{
+		if (n->array[pos] == newpos)
+			break ;
+		pos++;
+	}
+	if (number < newpos && pos == (n->length - 1))
+		return (0);
 	return (pos);
 }
-
-	// bigger = n->array[0];
-	// i = 0;
-	// while (i < n->length)
-	// {
-	// 	if (n->array[i] > bigger)
-	// 		bigger = n->array[i];
-	// 	i++;
-	// }
-	// lesser = bigger;
-	// i = 0;
-	// while (i < n->length)
-	// {
-	// 	if (n->array[i] < lesser && n->array[i] > number)
-	// 		lesser = n->array[i];
-	// 	i++;
-	// }

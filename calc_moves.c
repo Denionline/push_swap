@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 12:36:21 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/28 18:00:13 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/29 09:26:59 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int calc_moves(t_stack * a, t_stack * b, int number)
 			amount += moves_a;
 		amount += moves_b;
 	}
-	amount += (moves_a + moves_b);
+	else
+		amount += (moves_a + moves_b);
 	return (amount);
 }
