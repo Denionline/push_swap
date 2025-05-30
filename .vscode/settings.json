@@ -40,14 +40,15 @@
   "C_Cpp_Runner.useLinkTimeOptimization": false,
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
-    "push_swap.h": "c",
-    "libft.h": "c",
-    "stdlib.h": "c",
-    "type_traits": "c",
-    "typeinfo": "c",
-    "string_view": "c",
-    "regex": "c"
-  },
+	"push_swap.h": "c",
+	"libft.h": "c",
+	"stdlib.h": "c",
+	"type_traits": "c",
+	"typeinfo": "c",
+	"string_view": "c",
+	"regex": "c",
+	"stdio.h": "c"
+},
   "C_Cpp_Runner.msvcWarnings": [
     "/W4",
     "/permissive-",

@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:38:54 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/29 16:46:17 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/30 10:37:40 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@
 
 #define TRUE 1
 #define FALSE 0
+
+typedef struct s_moves
+{
+	int	   pos_a;
+	int	   pos_b;
+	int	   reverse_a;
+	int	   reverse_b;
+} t_moves;
 
 typedef struct s_stack
 {

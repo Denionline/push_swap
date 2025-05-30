@@ -6,12 +6,15 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 12:36:21 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/29 16:46:12 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/30 10:55:14 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-int calc_moves(t_stack * a, t_stack * b, int number)
+t_moves *calc_moves(t_stack * a, t_stack * b, int number)
 {
+	t_moves	*moves;
+
+	
 }
