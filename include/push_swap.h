@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: dximenes <dximenes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:38:54 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/26 13:40:39 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/01 23:13:59 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,19 @@ typedef struct s_stack
 }	t_stack;
 
 int		main(int argc, char *argv[]);
-void push_swap(t_stack **a, t_stack **b, int print);
+void	push_swap(t_stack *a, t_stack *b, int print);
 
 //Operations
 void	sn(t_stack **n, int toprint);
 void	ss(t_stack **a, t_stack **b, int toprint);
-void	pn(t_stack **from, t_stack **to, int toprint);
+void	pn(t_stack *from, t_stack *to, int toprint);
 void	rn(t_stack **n, int toprint);
 void	rr(t_stack **a, t_stack **b, int toprint);
 void	rrn(t_stack **n, int toprint);
 void	rrr(t_stack **a, t_stack **b, int toprint);
 
-
 //helpers
+int		calc_moves(t_stack * a, t_stack * b, int number);
+int		get_pos(t_stack * n, int number, int searchbetween);
 void	fh_print(t_stack *a, t_stack *b, int amount);
 #endif

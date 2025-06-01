@@ -3,29 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   pn.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: dximenes <dximenes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 11:38:09 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/26 12:22:23 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/01 23:13:48 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-void pn(t_stack **from, t_stack **to, int toprint)
+void pn(t_stack *from, t_stack *to, int toprint)
 {
 	int	temp;
 	int	i;
 
-	temp = (*from)->array[0];
+	temp = from->array[0];
 	i = -1;
-	while (++i < (*from)->length)
-		(*from)->array[i] = (*from)->array[i + 1];
-	(*from)->length--;
-	i = ((*to)->length++) + 1;
+	while (++i < from->length)
+		from->array[i] = from->array[i + 1];
+	from->length--;
+	i = (to->length++) + 1;
 	while (--i > 0) 
-		(*to)->array[i] = (*to)->array[i - 1];
-	(*to)->array[0] = temp;
+		to->array[i] = to->array[i - 1];
+	to->array[0] = temp;
 	if (toprint)
-		printf("p%s\n", (*to)->name);
+		printf("p%s\n", to->name);
 }

@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:37:48 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/27 13:51:15 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/29 16:42:46 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	fh_print(t_stack *a, t_stack *b, int amount)
 			printf("%-7s\n", "");
 	}
 	printf("---------------\n");
-	printf("   a   |   b   \n\n");
+	printf("   a   |   b   \n");
 }
 
 void	fh_initstack(t_stack **stack, char *name, size_t size)
@@ -102,7 +102,7 @@ int	main(int argc, char *argv[])
 		free(values[i++]);
 	}
 	free(values);
-	push_swap(&a, &b, !toprint);
+	push_swap(a, b, !toprint);
 	if (toprint)
 		fh_print(a, b, a->length > b->length ? a->length : b->length);
 	if (toprint && fh_issrted(a, b))
