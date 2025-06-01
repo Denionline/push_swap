@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: dximenes <dximenes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:27:10 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/29 16:41:00 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/01 23:19:44 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ static void put_back_to_stack_a(t_stack * a, t_stack * b, int print)
 	while (b->length > 0)
 	{
 		pos_a = get_pos_a(a, b->array[0]);
-		// printf("pos_a => %d\n", pos_a);
+		printf("pos_a => %d\n", pos_a);
 		if (pos_a > (a->length / 2))
 		{
 			moves_amount = 0;
@@ -142,8 +142,8 @@ static void put_back_to_stack_a(t_stack * a, t_stack * b, int print)
 		}
 		else
 			rotate_one(a, pos_a, FALSE, print);
-		pn(&b, &a, print);
-		// fh_print(a, b, a->length > b->length ? a->length : b->length);
+		pn(b, a, print);
+		fh_print(a, b, a->length > b->length ? a->length : b->length);
 	}
 }
 
@@ -154,9 +154,9 @@ void push_swap(t_stack * a, t_stack * b, int print)
 	int lesser;
 	int i;
 
-	// fh_print(a, b, a->length);
-	pn(&a, &b, print);
-	pn(&a, &b, print);
+	fh_print(a, b, a->length);
+	pn(a, b, print);
+	pn(a, b, print);
 	while (a->length > 3)
 	{
 		i = 0;
@@ -171,16 +171,18 @@ void push_swap(t_stack * a, t_stack * b, int print)
 				lesser_moves = current;
 			}
 		}
-		// printf("lesser => %d\n", lesser);
+		printf("lesser => %d\n", lesser);
 		check_rotate(a, b, lesser, print);
-		pn(&a, &b, print);
-		// fh_print(a, b, a->length > b->length ? a->length : b->length);
+		pn(a, b, print);
+		fh_print(a, b, a->length > b->length ? a->length : b->length);
 	}
 	if (b->array[0] < b->array[b->length - 1])
 		rn(&b, print);
 	order_last_three(a, print);
-	// fh_print(a, b, a->length > b->length ? a->length : b->length);
-	// printf("-------------Pushing back to stack a-----------------\n");
+	fh_print(a, b, a->length > b->length ? a->length : b->length);
+	printf("-------------Pushing back to stack a-----------------\n");
 	put_back_to_stack_a(a, b, print);
-	// fh_print(a, b, a->length > b->length ? a->length : b->length);
+	fh_print(a, b, a->length > b->length ? a->length : b->length);
+	i = 0;
+	while ()
 }
