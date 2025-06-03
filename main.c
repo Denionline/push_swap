@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:37:48 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/29 16:42:46 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/03 11:54:53 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	fh_initstack(t_stack **stack, char *name, size_t size)
 		(*stack)->length = 0;
 }
 
-static int	fh_issrted(t_stack *a, t_stack *b)
+int	fh_issrted(t_stack *a, t_stack *b)
 {
 	if (b->length > 0)
 		return (0);

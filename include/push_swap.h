@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:38:54 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/30 10:58:56 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/03 11:55:01 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 
 typedef struct s_moves
 {
-	int	   pos_a;
-	int	   pos_b;
-	int	   reverse_a;
-	int	   reverse_b;
+	int pos_a;
+	int pos_b;
+	int reverse_a;
+	int reverse_b;
 } t_moves;
 
 typedef struct s_stack
@@ -49,4 +49,5 @@ void rrr(t_stack ** a, t_stack ** b, int toprint);
 // helpers
 int	 calc_moves(t_stack * a, t_stack * b, int number);
 void fh_print(t_stack * a, t_stack * b, int amount);
+int	 fh_issrted(t_stack * a, t_stack * b);
 #endif
