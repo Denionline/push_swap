@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:38:54 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/03 11:55:01 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/03 18:25:00 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@
 
 typedef struct s_moves
 {
-	int pos_a;
-	int pos_b;
-	int reverse_a;
-	int reverse_b;
+	int a;
+	int b;
+	int rr_a;
+	int rr_b;
+	int total;
 } t_moves;
 
 typedef struct s_stack
@@ -38,16 +39,21 @@ int	 main(int argc, char * argv[]);
 void push_swap(t_stack * a, t_stack * b, int print);
 
 // Operations
-void sn(t_stack ** n, int toprint);
-void ss(t_stack ** a, t_stack ** b, int toprint);
-void pn(t_stack ** from, t_stack ** to, int toprint);
-void rn(t_stack ** n, int toprint);
-void rr(t_stack ** a, t_stack ** b, int toprint);
-void rrn(t_stack ** n, int toprint);
-void rrr(t_stack ** a, t_stack ** b, int toprint);
+void sn(t_stack * n, int toprint);
+void ss(t_stack * a, t_stack * b, int toprint);
+void pn(t_stack * from, t_stack * to, int toprint);
+void rn(t_stack * n, int toprint);
+void rr(t_stack * a, t_stack * b, int toprint);
+void rrn(t_stack * n, int toprint);
+void rrr(t_stack * a, t_stack * b, int toprint);
 
 // helpers
-int	 calc_moves(t_stack * a, t_stack * b, int number);
-void fh_print(t_stack * a, t_stack * b, int amount);
-int	 fh_issrted(t_stack * a, t_stack * b);
+t_moves calc_moves(t_stack * a, t_stack * b, int number);
+void	fh_print(t_stack * a, t_stack * b, int amount);
+int		fh_issrted(t_stack * a, t_stack * b);
+int		get_pos_in_1(t_stack * b, int number);
+int		get_pos_in_2(t_stack * b, int number);
+int		get_smaller(t_stack * n);
+int		get_bigger(t_stack * n);
+int		get_pos(t_stack * n, int number);
 #endif

@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:27:10 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/30 10:46:39 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/03 18:27:08 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,64 +14,144 @@
 
 static void rotate_one(t_stack * a, t_stack * b, t_moves * moves, int print)
 {
-	while (moves->pos_a-- > 0)
-	{
-		if (moves->reverse_a)
-			rrn(&a, print);
-		else
-			rn(&a, print);
-	}
-	while (moves->pos_b-- > 0)
-	{
-		if (moves->reverse_b)
-			rrn(&b, print);
-		else
-			rn(&b, print);
-	}
-}
-static void rotate_two(t_stack * a, t_stack * b, t_moves ** moves, int print)
-{
-	int	amount;
 	int i;
 
-	if ((*moves)->pos_a > (*moves)->pos_b)
-		amount = (*moves)->pos_b;
+	i = 0;
+	while (i++ < moves->a)
+	{
+		if (moves->rr_a)
+			rrn(a, print);
+		else
+			rn(a, print);
+	}
+	i = 0;
+	while (i++ < moves->b)
+	{
+		if (moves->rr_b)
+			rrn(b, print);
+		else
+			rn(b, print);
+	}
+}
+static void rotate_two(t_stack * a, t_stack * b, t_moves * moves, int print)
+{
+	int amount;
+	int i;
+
+	if (moves->a > moves->b)
+		amount = moves->b;
 	else
-		amount = (*moves)->pos_a;
+		amount = moves->a;
 	i = 0;
 	while (i < amount)
 	{
-		if ((*moves)->reverse_a && (*moves)->reverse_b)
-			rrr(&a, &b, print);
+		if (moves->rr_a && moves->rr_b)
+			rrr(a, b, print);
 		else
-			rr(&a, &b, print);
+			rr(a, b, print);
 		i++;
 	}
-	(*moves)->pos_a -= amount;
-	(*moves)->pos_b -= amount;
+	moves->a -= amount;
+	moves->b -= amount;
+}
+
+static void order_last_three(t_stack * a, int print)
+{
+	if (a->array[0] > a->array[1])
+		sn(a, print);
+	if (a->array[1] > a->array[2])
+		sn(a, print);
+	if (a->array[0] > a->array[a->length - 1])
+		rn(a, print);
+}
+
+static void get_back(t_stack * a, t_stack * b, int print)
+{
+	int moves_b;
+	int i;
+
+	i = 0;
+	moves_b = print < 0;
+	while (b->length > 0)
+	{
+		moves_b = get_pos_in_2(a, b->array[0]);
+		if (moves_b > (a->length / 2))
+			while (i++ < (a->length - moves_b))
+				rrn(a, TRUE);
+		else
+			while (i++ < moves_b)
+				rn(a, TRUE);
+		pn(b, a, TRUE);
+		if (!print)
+			fh_print(a, b, a->length > b->length ? a->length : b->length);
+	}
+}
+
+static void put_on_top(t_stack * n, int number)
+{
+	int pos_n;
+	int i;
+
+	i = 0;
+	pos_n = get_pos(n, number);
+	if (pos_n > 0)
+	{
+		if (pos_n > (n->length / 2))
+			while (i++ < (n->length - pos_n))
+				rrn(n, TRUE);
+		else
+			while (i++ < pos_n)
+				rn(n, TRUE);
+	}
 }
 
 void push_swap(t_stack * a, t_stack * b, int print)
 {
-	t_moves * moves;
-	t_moves * current;
-	int		  i;
+	t_moves moves;
+	t_moves current_moves;
+	int		smaller;
+	int		i;
 
-	pn(&a, &b, print);
-	pn(&a, &b, print);
+	ft_memset(&moves, 0, sizeof(moves));
+	if (!print)
+		fh_print(a, b, a->length > b->length ? a->length : b->length);
+	pn(a, b, TRUE);
+	pn(a, b, TRUE);
+	if (!print)
+		fh_print(a, b, a->length > b->length ? a->length : b->length);
 	while (a->length > 3)
 	{
 		i = 0;
 		moves = calc_moves(a, b, a->array[i]);
-		while (i < a->length)
+		smaller = a->array[i];
+		while (++i < a->length)
 		{
-			current = calc_moves(a, b, a->array[i]);
-			if ((moves->pos_a + moves->pos_b) > (current->pos_a + current->pos_b))
-				moves = current;
-			i++;
+			current_moves = calc_moves(a, b, a->array[i]);
+			if (moves.total > current_moves.total)
+			{
+				moves = current_moves;
+				smaller = a->array[i];
+			}
 		}
-		if (moves->reverse_a == moves->reverse_b)
-			rotate_two(a, b, &moves, print);
-		rotate_one(a, b, moves, print);
+		if (moves.rr_a == moves.rr_b)
+			rotate_two(a, b, &moves, TRUE);
+		rotate_one(a, b, &moves, TRUE);
+		pn(a, b, TRUE);
+		if (!print)
+			printf("\n Smaller = %d | Moves a = %d | Moves b = %d | Total = %d\n", smaller, moves.a, moves.b, moves.total);
+		if (!print)
+			fh_print(a, b, a->length > b->length ? a->length : b->length);
 	}
+	order_last_three(a, print);
+	if (!print)
+		fh_print(a, b, a->length > b->length ? a->length : b->length);
+	put_on_top(b, get_bigger(b));
+	if (!print)
+		fh_print(a, b, a->length > b->length ? a->length : b->length);
+	get_back(a, b, print);
+	if (!print)
+		fh_print(a, b, a->length > b->length ? a->length : b->length);
+	put_on_top(a, get_smaller(a));
+	if (!print)
+		fh_print(a, b, a->length > b->length ? a->length : b->length);
 }

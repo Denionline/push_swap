@@ -6,13 +6,13 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:42:43 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/26 12:23:24 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/03 12:48:32 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-void	ss(t_stack **a, t_stack **b, int toprint)
+void ss(t_stack * a, t_stack * b, int toprint)
 {
 	sn(a, FALSE);
 	sn(b, FALSE);
