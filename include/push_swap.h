@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:38:54 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/04 15:02:09 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/04 17:22:35 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,23 @@ typedef struct s_stack
 } t_stack;
 
 int	 main(int argc, char * argv[]);
-void push_swap(t_stack * a, t_stack * b, int print);
+void push_swap(t_stack * a, t_stack * b);
+
+//Utils
+void rotate_one(t_stack * a, t_stack * b, t_moves * moves);
+void rotate_two(t_stack * a, t_stack * b, t_moves * moves);
 
 // Operations
 void pn(t_stack * from, t_stack * to);
 void sn(t_stack * n, int toprint);
-void ss(t_stack * a, t_stack * b, int toprint);
 void rn(t_stack * n, int toprint);
-void rr(t_stack * a, t_stack * b, int toprint);
 void rrn(t_stack * n, int toprint);
-void rrr(t_stack * a, t_stack * b, int toprint);
+void ss(t_stack * a, t_stack * b);
+void rr(t_stack * a, t_stack * b);
+void rrr(t_stack * a, t_stack * b);
 
 // helpers
 t_moves calc_moves(t_stack * a, t_stack * b, int number);
-void	fh_print(t_stack * a, t_stack * b, int amount);
 int		fh_issrted(t_stack * a, t_stack * b);
 int		get_bigger_pos(t_stack * b, int number);
 int		get_smaller_pos(t_stack * b, int number);

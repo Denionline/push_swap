@@ -6,16 +6,15 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 12:17:27 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/04 15:01:00 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/04 17:26:03 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-void rr(t_stack * a, t_stack * b, int toprint)
+void rr(t_stack * a, t_stack * b)
 {
 	rn(a, FALSE);
 	rn(b, FALSE);
-	if (toprint)
-		ft_putendl_fd("rr", 1);
+	ft_putendl_fd("rr", 1);
 }

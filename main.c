@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:37:48 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/04 14:11:29 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/04 15:11:56 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,6 @@ static char ** fh_getarray(int len, char ** values)
 		array[i - 1] = ft_strdup(values[i]);
 	array[i] = NULL;
 	return (array);
-}
-
-void fh_print(t_stack * a, t_stack * b, int amount)
-{
-	printf("---------------\n");
-	for (int i = 0; i < amount; i++)
-	{
-		if (a->array[i - 1] > a->array[i] && i < a->length)
-			printf("\033[0;91m%7d\033[0;39m", a->array[i]);
-		else if (i < a->length)
-			printf("%7d", a->array[i]);
-		else
-			printf("%7s", "");
-		if (i < a->length || i < b->length)
-			printf("|");
-		if (i < b->length)
-			printf("%-7d\n", b->array[i]);
-		else
-			printf("%-7s\n", "");
-	}
-	printf("---------------\n");
-	printf("   a   |   b   \n");
 }
 
 void fh_initstack(t_stack ** stack, char * name, size_t size)
@@ -73,7 +51,6 @@ int fh_issrted(t_stack * a, t_stack * b)
 				return (0);
 		}
 	}
-
 	return (1);
 }
 
@@ -104,9 +81,7 @@ int main(int argc, char * argv[])
 		free(values[i++]);
 	}
 	free(values);
-	push_swap(a, b, !toprint);
-	if (toprint)
-		fh_print(a, b, a->length > b->length ? a->length : b->length);
+	push_swap(a, b);
 	if (toprint && fh_issrted(a, b))
 		printf("\033[0;92mIs sorted :D\033[0;39m\n\n");
 	else if (toprint)
