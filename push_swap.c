@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:27:10 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/03 18:27:08 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/04 10:49:01 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,16 @@ static void rotate_two(t_stack * a, t_stack * b, t_moves * moves, int print)
 
 static void order_last_three(t_stack * a, int print)
 {
-	if (a->array[0] > a->array[1])
-		sn(a, print);
-	if (a->array[1] > a->array[2])
-		sn(a, print);
-	if (a->array[0] > a->array[a->length - 1])
+	if (a->array[2] < a->array[1] && a->array[2] > a->array[0])
+		rrn(a, print);
+	else if (a->array[2] < a->array[0] && a->array[2] < a->array[1])
+		rrn(a, print);
+	else if (a->array[0] > a->array[1] && a->array[0] > a->array[2])
 		rn(a, print);
+	else if (a->array[0] > a->array[1] && a->array[1] > a->array[2])
+		rn(a, print);
+	if (a->array[0] > a->array[1] && a->array[2] > a->array[0])
+		sn(a, print);
 }
 
 static void get_back(t_stack * a, t_stack * b, int print)
@@ -74,7 +78,7 @@ static void get_back(t_stack * a, t_stack * b, int print)
 	moves_b = print < 0;
 	while (b->length > 0)
 	{
-		moves_b = get_pos_in_2(a, b->array[0]);
+		moves_b = get_smaller_pos(a, b->array[0]);
 		if (moves_b > (a->length / 2))
 			while (i++ < (a->length - moves_b))
 				rrn(a, TRUE);
@@ -142,6 +146,8 @@ void push_swap(t_stack * a, t_stack * b, int print)
 		if (!print)
 			fh_print(a, b, a->length > b->length ? a->length : b->length);
 	}
+	if (b->array[b->length - 1] > b->array[0])
+		rrn(b, TRUE);
 	order_last_three(a, print);
 	if (!print)
 		fh_print(a, b, a->length > b->length ? a->length : b->length);

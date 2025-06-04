@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:38:54 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/03 18:25:00 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/04 10:19:36 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void rrr(t_stack * a, t_stack * b, int toprint);
 t_moves calc_moves(t_stack * a, t_stack * b, int number);
 void	fh_print(t_stack * a, t_stack * b, int amount);
 int		fh_issrted(t_stack * a, t_stack * b);
-int		get_pos_in_1(t_stack * b, int number);
-int		get_pos_in_2(t_stack * b, int number);
+int		get_bigger_pos(t_stack * b, int number);
+int		get_smaller_pos(t_stack * b, int number);
 int		get_smaller(t_stack * n);
 int		get_bigger(t_stack * n);
 int		get_pos(t_stack * n, int number);

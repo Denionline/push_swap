@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 12:36:21 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/03 18:25:04 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/04 10:19:36 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int get_smaller(t_stack * n)
 	return (smaller);
 }
 
-int get_pos_in_2(t_stack * b, int number)
+int get_smaller_pos(t_stack * b, int number)
 {
 	int smaller;
 	int pos;
@@ -73,7 +73,7 @@ int get_pos_in_2(t_stack * b, int number)
 	return (get_pos(b, smaller));
 }
 
-int get_pos_in_1(t_stack * b, int number)
+int get_bigger_pos(t_stack * b, int number)
 {
 	int bigger;
 	int pos;
@@ -101,7 +101,7 @@ t_moves calc_moves(t_stack * a, t_stack * b, int number)
 	moves.a = moves_a;
 	if (moves.rr_a)
 		moves.a = a->length - moves_a;
-	moves_b = get_pos_in_1(b, number);
+	moves_b = get_bigger_pos(b, number);
 	moves.rr_b = moves_b > (b->length / 2);
 	moves.b = moves_b;
 	if (moves.rr_b)
