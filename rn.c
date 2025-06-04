@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 12:17:20 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/03 12:47:54 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/04 15:00:37 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,8 @@ void rn(t_stack * n, int toprint)
 		n->array[i] = n->array[i + 1];
 	n->array[i - 1] = tomove;
 	if (toprint)
-		printf("r%s\n", n->name);
+	{
+		ft_putstr_fd("r", 1);
+		ft_putendl_fd(n->name, 1);
+	}
 }

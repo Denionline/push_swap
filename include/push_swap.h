@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:38:54 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/04 10:19:36 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/04 15:02:09 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ int	 main(int argc, char * argv[]);
 void push_swap(t_stack * a, t_stack * b, int print);
 
 // Operations
+void pn(t_stack * from, t_stack * to);
 void sn(t_stack * n, int toprint);
 void ss(t_stack * a, t_stack * b, int toprint);
-void pn(t_stack * from, t_stack * to, int toprint);
 void rn(t_stack * n, int toprint);
 void rr(t_stack * a, t_stack * b, int toprint);
 void rrn(t_stack * n, int toprint);

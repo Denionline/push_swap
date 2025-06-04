@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:27:10 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/04 10:59:14 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/04 15:07:58 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,15 @@ static void rotate_two(t_stack * a, t_stack * b, t_moves * moves, int print)
 
 static void order_last_three(t_stack * a)
 {
-	if (a->array[2] < a->array[1] && a->array[2] > a->array[0])
-		rrn(a, TRUE);
-	else if (a->array[2] < a->array[0] && a->array[2] < a->array[1])
+	if (a->array[0] > a->array[1] && a->array[1] > a->array[2])
+		rn(a, TRUE);
+	else if (a->array[2] < a->array[1] && a->array[2] > a->array[0])
 		rrn(a, TRUE);
 	else if (a->array[0] > a->array[1] && a->array[0] > a->array[2])
 		rn(a, TRUE);
-	else if (a->array[0] > a->array[1] && a->array[1] > a->array[2])
-		rn(a, TRUE);
-	if (a->array[0] > a->array[1] && a->array[2] > a->array[0])
+	else if (a->array[2] < a->array[0] && a->array[2] < a->array[1])
+		rrn(a, TRUE);
+	if (a->array[0] > a->array[1])
 		sn(a, TRUE);
 }
 
@@ -74,10 +74,10 @@ static void get_back(t_stack * a, t_stack * b, int print)
 	int moves_b;
 	int i;
 
-	i = 0;
 	moves_b = print < 0;
 	while (b->length > 0)
 	{
+		i = 0;
 		moves_b = get_bigger_pos(a, b->array[0]);
 		if (moves_b > (a->length / 2))
 			while (i++ < (a->length - moves_b))
@@ -85,7 +85,7 @@ static void get_back(t_stack * a, t_stack * b, int print)
 		else
 			while (i++ < moves_b)
 				rn(a, TRUE);
-		pn(b, a, TRUE);
+		pn(b, a);
 		if (a->array[0] > a->array[1])
 			sn(a, TRUE);
 		if (!print)
@@ -121,8 +121,8 @@ void push_swap(t_stack * a, t_stack * b, int print)
 	ft_memset(&moves, 0, sizeof(moves));
 	if (!print)
 		fh_print(a, b, a->length > b->length ? a->length : b->length);
-	pn(a, b, TRUE);
-	pn(a, b, TRUE);
+	pn(a, b);
+	pn(a, b);
 	if (!print)
 		fh_print(a, b, a->length > b->length ? a->length : b->length);
 	while (a->length > 3)
@@ -142,7 +142,7 @@ void push_swap(t_stack * a, t_stack * b, int print)
 		if (moves.rr_a == moves.rr_b)
 			rotate_two(a, b, &moves, TRUE);
 		rotate_one(a, b, &moves, TRUE);
-		pn(a, b, TRUE);
+		pn(a, b);
 		if (!print)
 			printf("\n Smaller = %d | Moves a = %d | Moves b = %d | Total = %d\n", smaller, moves.a, moves.b, moves.total);
 		if (!print)
