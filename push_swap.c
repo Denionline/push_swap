@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:27:10 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/04 10:49:01 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/04 10:59:14 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,18 +55,18 @@ static void rotate_two(t_stack * a, t_stack * b, t_moves * moves, int print)
 	moves->b -= amount;
 }
 
-static void order_last_three(t_stack * a, int print)
+static void order_last_three(t_stack * a)
 {
 	if (a->array[2] < a->array[1] && a->array[2] > a->array[0])
-		rrn(a, print);
+		rrn(a, TRUE);
 	else if (a->array[2] < a->array[0] && a->array[2] < a->array[1])
-		rrn(a, print);
+		rrn(a, TRUE);
 	else if (a->array[0] > a->array[1] && a->array[0] > a->array[2])
-		rn(a, print);
+		rn(a, TRUE);
 	else if (a->array[0] > a->array[1] && a->array[1] > a->array[2])
-		rn(a, print);
+		rn(a, TRUE);
 	if (a->array[0] > a->array[1] && a->array[2] > a->array[0])
-		sn(a, print);
+		sn(a, TRUE);
 }
 
 static void get_back(t_stack * a, t_stack * b, int print)
@@ -78,7 +78,7 @@ static void get_back(t_stack * a, t_stack * b, int print)
 	moves_b = print < 0;
 	while (b->length > 0)
 	{
-		moves_b = get_smaller_pos(a, b->array[0]);
+		moves_b = get_bigger_pos(a, b->array[0]);
 		if (moves_b > (a->length / 2))
 			while (i++ < (a->length - moves_b))
 				rrn(a, TRUE);
@@ -86,6 +86,8 @@ static void get_back(t_stack * a, t_stack * b, int print)
 			while (i++ < moves_b)
 				rn(a, TRUE);
 		pn(b, a, TRUE);
+		if (a->array[0] > a->array[1])
+			sn(a, TRUE);
 		if (!print)
 			fh_print(a, b, a->length > b->length ? a->length : b->length);
 	}
@@ -148,7 +150,7 @@ void push_swap(t_stack * a, t_stack * b, int print)
 	}
 	if (b->array[b->length - 1] > b->array[0])
 		rrn(b, TRUE);
-	order_last_three(a, print);
+	order_last_three(a);
 	if (!print)
 		fh_print(a, b, a->length > b->length ? a->length : b->length);
 	put_on_top(b, get_bigger(b));
