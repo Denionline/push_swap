@@ -6,30 +6,12 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:27:10 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/06 09:59:55 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/06 11:04:09 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 #include <stdlib.h>
-
-static void put_on_top(t_stack * n, int number)
-{
-	int pos_n;
-	int i;
-
-	i = 0;
-	pos_n = get_pos(n, number);
-	if (pos_n > 0)
-	{
-		if (pos_n > (n->length / 2))
-			while (i++ < (n->length - pos_n))
-				rrn(n, TRUE);
-		else
-			while (i++ < pos_n)
-				rn(n, TRUE);
-	}
-}
 
 static int * get_sorted_array(t_stack * a)
 {
@@ -127,5 +109,4 @@ void push_swap(t_stack * a, t_stack * b)
 		}
 		pn(b, a);
 	}
-	put_on_top(a, get_smaller(a));
 }
