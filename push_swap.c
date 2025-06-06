@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:27:10 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/06 12:29:03 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/06 16:22:46 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,23 @@ static int * get_sorted_array(t_stack * a)
 	return sorted;
 }
 
+// Função auxiliar para encontrar o elemento do chunk mais próximo do topo/fundo
+int find_best_rotation(t_stack * a, int chunk_start, int chunk_end, int * sorted)
+{
+	int i = 0;
+	int j = a->length - 1;
+	while (i <= j)
+	{
+		if (a->array[i] >= sorted[chunk_start] && a->array[i] < sorted[chunk_end])
+			return i; // positivo: rotacionar para frente
+		if (a->array[j] >= sorted[chunk_start] && a->array[j] < sorted[chunk_end])
+			return -(a->length - j); // negativo: rotacionar para trás
+		i++;
+		j--;
+	}
+	return 0;
+}
+
 void push_swap(t_stack * a, t_stack * b)
 {
 	int	  chunk_size;
@@ -39,8 +56,6 @@ void push_swap(t_stack * a, t_stack * b)
 	int	  max;
 	int	  pos;
 	int	  i;
-	int	  found;
-	int	  j;
 	int	  total_len;
 
 	total_len = a->length;
@@ -57,28 +72,15 @@ void push_swap(t_stack * a, t_stack * b)
 		if (chunk_end > total_len)
 			chunk_end = total_len;
 
-		found = 1;
-		while (found && a->length > 0)
+		int pushed = 0;
+		while (pushed < chunk_end - chunk_start)
 		{
-			found = 0;
-			j = 0;
-			while (j < a->length)
+			if (a->array[0] >= sorted[chunk_start] && a->array[0] < sorted[chunk_end])
 			{
-				val = a->array[j];
-				if (val >= sorted[chunk_start] && val < sorted[chunk_end])
-				{
-					found = 1;
-					break;
-				}
-				j++;
-			}
-			if (!found)
-				break;
-			val = a->array[0];
-			if (val >= sorted[chunk_start] && val < sorted[chunk_end])
-			{
+				val = a->array[0];
 				pn(a, b);
-				if (val < sorted[chunk_start] + (chunk_end - chunk_start) / 2)
+				pushed++;
+				if (val < sorted[chunk_start] + (sorted[chunk_end - 1] - sorted[chunk_start]) / 2)
 					rn(b, TRUE);
 			}
 			else
@@ -87,9 +89,6 @@ void push_swap(t_stack * a, t_stack * b)
 		chunk_start = chunk_end;
 	}
 	free(sorted);
-
-	while (a->length > 0)
-		pn(a, b);
 
 	while (b->length > 0)
 	{
