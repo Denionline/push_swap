@@ -6,48 +6,12 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:27:10 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/05 19:01:02 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/06 09:59:55 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 #include <stdlib.h>
-
-// static void order_last_three(t_stack * a)
-// {
-// 	if (a->array[0] > a->array[1] && a->array[1] > a->array[2])
-// 		rn(a, TRUE);
-// 	else if (a->array[2] < a->array[1] && a->array[2] > a->array[0])
-// 		rrn(a, TRUE);
-// 	else if (a->array[0] > a->array[1] && a->array[0] > a->array[2])
-// 		rn(a, TRUE);
-// 	else if (a->array[2] < a->array[0] && a->array[2] < a->array[1])
-// 		rrn(a, TRUE);
-// 	if (a->array[0] > a->array[1])
-// 		sn(a, TRUE);
-// }
-
-// static void get_back(t_stack * a, t_stack * b)
-// {
-// 	int moves_b;
-// 	int i;
-
-// 	moves_b = 0;
-// 	while (b->length > 0)
-// 	{
-// 		i = 0;
-// 		moves_b = get_bigger_pos(a, b->array[0]);
-// 		if (moves_b > (a->length / 2))
-// 			while (i++ < (a->length - moves_b))
-// 				rrn(a, TRUE);
-// 		else
-// 			while (i++ < moves_b)
-// 				rn(a, TRUE);
-// 		pn(b, a);
-// 		if (a->array[0] > a->array[1])
-// 			sn(a, TRUE);
-// 	}
-// }
 
 static void put_on_top(t_stack * n, int number)
 {
@@ -99,9 +63,9 @@ void push_swap(t_stack * a, t_stack * b)
 
 	total_len = a->length;
 	if (total_len <= 100)
-		chunk_size = 10;
+		chunk_size = 15;
 	else
-		chunk_size = 50;
+		chunk_size = 45;
 	sorted = get_sorted_array(a);
 
 	chunk_start = 0;
@@ -132,7 +96,6 @@ void push_swap(t_stack * a, t_stack * b)
 			if (val >= sorted[chunk_start] && val < sorted[chunk_end])
 			{
 				pn(a, b);
-				// Se o valor for menor que a média do chunk, rotacione b
 				if (val < sorted[chunk_start] + (chunk_end - chunk_start) / 2)
 					rn(b, TRUE);
 			}
@@ -143,7 +106,6 @@ void push_swap(t_stack * a, t_stack * b)
 	}
 	free(sorted);
 
-	// Se ainda restar algo em a, empurre tudo para b
 	while (a->length > 0)
 		pn(a, b);
 
