@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:27:10 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/06 12:39:49 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/06 14:32:57 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,27 +68,28 @@ static void put_on_top(t_stack * n, int number)
 
 void push_swap(t_stack * a, t_stack * b)
 {
-    int chunk_count = 5; // ou 10, teste o que for melhor
-    int chunk_size = a->length / chunk_count;
-    int *sorted = get_sorted_array(a); // você precisa implementar isso
-    int chunk_min, chunk_max, i, j;
+	t_moves moves;
+	t_moves current_moves;
+	int		i;
 
-    for (i = 0; i < chunk_count; i++)
-    {
-        chunk_min = sorted[i * chunk_size];
-        chunk_max = sorted[(i + 1) * chunk_size - 1];
-        j = 0;
-        while (j < a->length)
-        {
-            if (a->array[0] >= chunk_min && a->array[0] <= chunk_max)
-                pn(a, b);
-            else
-                rn(a, TRUE);
-            j++;
-        }
-    }
-    // Depois, traga de volta de B para A como já faz em get_back
-    order_last_three(a);
-    get_back(a, b);
-    put_on_top(a, get_smaller(a));
+	pn(a, b);
+	pn(a, b);
+	while (a->length > 3)
+	{
+		i = 0;
+		moves = calc_moves(a, b, a->array[i]);
+		while (++i < a->length)
+		{
+			current_moves = calc_moves(a, b, a->array[i]);
+			if (moves.total > current_moves.total)
+				moves = current_moves;
+		}
+		if (moves.reverse_a == moves.reverse_b)
+			rotate_two(a, b, &moves);
+		rotate_one(a, b, &moves);
+		pn(a, b);
+	}
+	order_last_three(a);
+	get_back(a, b);
+	put_on_top(a, get_smaller(a));
 }

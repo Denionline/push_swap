@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:38:54 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/04 17:22:35 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/06 14:32:57 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ typedef struct s_moves
 {
 	int a;
 	int b;
-	int rr_a;
-	int rr_b;
+	int reverse_a;
+	int reverse_b;
 	int total;
 } t_moves;
 

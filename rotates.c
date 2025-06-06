@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 17:20:05 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/04 17:21:07 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/06 14:39:53 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,22 @@ void rotate_one(t_stack * a, t_stack * b, t_moves * moves)
 	int i;
 
 	i = 0;
-	while (i++ < moves->a)
+	while (i < moves->a)
 	{
-		if (moves->rr_a)
+		if (moves->reverse_a)
 			rrn(a, TRUE);
 		else
 			rn(a, TRUE);
+		i++;
 	}
 	i = 0;
-	while (i++ < moves->b)
+	while (i < moves->b)
 	{
-		if (moves->rr_b)
+		if (moves->reverse_b)
 			rrn(b, TRUE);
 		else
 			rn(b, TRUE);
+		i++;
 	}
 }
 void rotate_two(t_stack * a, t_stack * b, t_moves * moves)
@@ -45,7 +47,7 @@ void rotate_two(t_stack * a, t_stack * b, t_moves * moves)
 	i = 0;
 	while (i < amount)
 	{
-		if (moves->rr_a && moves->rr_b)
+		if (moves->reverse_a && moves->reverse_b)
 			rrr(a, b);
 		else
 			rr(a, b);

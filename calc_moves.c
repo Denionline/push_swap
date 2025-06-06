@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 12:36:21 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/04 10:19:36 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/06 14:32:57 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,20 +97,20 @@ t_moves calc_moves(t_stack * a, t_stack * b, int number)
 
 	ft_memset(&moves, 0, sizeof(moves));
 	moves_a = get_pos(a, number);
-	moves.rr_a = moves_a > (a->length / 2);
+	moves.reverse_a = moves_a > (a->length / 2);
 	moves.a = moves_a;
-	if (moves.rr_a)
+	if (moves.reverse_a)
 		moves.a = a->length - moves_a;
-	moves_b = get_bigger_pos(b, number);
-	moves.rr_b = moves_b > (b->length / 2);
+	moves_b = get_smaller_pos(b, number);
+	moves.reverse_b = moves_b > (b->length / 2);
 	moves.b = moves_b;
-	if (moves.rr_b)
+	if (moves.reverse_b)
 		moves.b = b->length - moves_b;
-	if (moves.rr_a == moves.rr_b && moves.a > moves.b)
+	if (moves.reverse_a == moves.reverse_b && moves.a > moves.b)
 		moves.total = moves.a;
-	if (moves.rr_a == moves.rr_b && moves.b > moves.a)
+	if (moves.reverse_a == moves.reverse_b && moves.b > moves.a)
 		moves.total = moves.b;
-	if (moves.rr_a != moves.rr_b)
+	if (moves.reverse_a != moves.reverse_b)
 		moves.total = moves.a + moves.b;
 	return (moves);
 }
