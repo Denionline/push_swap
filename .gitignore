@@ -3,3 +3,6 @@
 build/
 .vscode/launch.json
 /push_swap_visualizer
+*.o
+binary.a
+push_swap
