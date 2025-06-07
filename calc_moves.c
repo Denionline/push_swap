@@ -6,40 +6,112 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 12:36:21 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/29 09:26:59 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/07 18:15:52 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-int calc_moves(t_stack * a, t_stack * b, int number)
+int get_pos(t_stack * n, int number)
 {
-	int reverse_a;
-	int reverse_b;
-	int moves_a;
-	int moves_b;
-	int pos_a;
-	int pos_b;
-	int amount;
+	int pos;
 
-	pos_a = get_pos(a, number, FALSE);
-	reverse_a = pos_a > (a->length / 2);
-	moves_a = pos_a;
-	if (reverse_a)
-		moves_a = a->length - pos_a;
-	pos_b = get_pos(b, number, TRUE);
-	reverse_b = pos_b > (b->length / 2);
-	moves_b = pos_b;
-	if (reverse_b)
-		moves_b = b->length - pos_b;
-	amount = 1;
-	if (reverse_a == reverse_b)
+	pos = 0;
+	while (pos < n->length)
 	{
-		if (moves_a > moves_b)
-			amount += moves_a;
-		amount += moves_b;
+		if (n->array[pos] == number)
+			return (pos);
+		pos++;
 	}
-	else
-		amount += (moves_a + moves_b);
-	return (amount);
+	return (-1);
+}
+
+int get_bigger(t_stack * n)
+{
+	int bigger;
+	int pos;
+
+	bigger = n->array[0];
+	pos = 0;
+	while (pos < n->length)
+	{
+		if (n->array[pos] > bigger)
+			bigger = n->array[pos];
+		pos++;
+	}
+	return (bigger);
+}
+int get_smaller(t_stack * n)
+{
+	int smaller;
+	int pos;
+
+	smaller = n->array[0];
+	pos = 0;
+	while (pos < n->length)
+	{
+		if (n->array[pos] < smaller)
+			smaller = n->array[pos];
+		pos++;
+	}
+	return (smaller);
+}
+
+int get_smaller_pos(t_stack * b, int number)
+{
+	int smaller;
+	int pos;
+
+	smaller = get_smaller(b);
+	pos = 0;
+	while (pos < b->length)
+	{
+		if (smaller < b->array[pos] && number > b->array[pos])
+			smaller = b->array[pos];
+		pos++;
+	}
+	return (get_pos(b, smaller));
+}
+
+int get_bigger_pos(t_stack * b, int number)
+{
+	int bigger;
+	int pos;
+
+	bigger = get_bigger(b);
+	pos = 0;
+	while (pos < b->length)
+	{
+		if (bigger > b->array[pos] && number < b->array[pos])
+			bigger = b->array[pos];
+		pos++;
+	}
+	return (get_pos(b, bigger));
+}
+
+t_moves calc_moves(t_stack * a, t_stack * b, int number)
+{
+	t_moves moves;
+	int		moves_a;
+	int		moves_b;
+
+	ft_memset(&moves, 0, sizeof(moves));
+	moves_a = get_pos(a, number);
+	moves.reverse_a = moves_a > (a->length / 2);
+	moves.a = moves_a;
+	if (moves.reverse_a)
+		moves.a = a->length - moves_a;
+	moves_b = get_smaller_pos(b, number);
+	moves.reverse_b = moves_b > (b->length / 2);
+	moves.b = moves_b;
+	if (moves.reverse_b)
+		moves.b = b->length - moves_b;
+	moves.total = moves.a;
+	if (moves.reverse_a == moves.reverse_b && moves.a > moves.b)
+		moves.total = moves.a;
+	if (moves.reverse_a == moves.reverse_b && moves.b > moves.a)
+		moves.total = moves.b;
+	if (moves.reverse_a != moves.reverse_b)
+		moves.total = moves.a + moves.b;
+	return (moves);
 }

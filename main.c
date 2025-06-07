@@ -6,15 +6,15 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:37:48 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/29 16:42:46 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/04 15:11:56 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-static char	**fh_getarray(int len, char **values)
+static char ** fh_getarray(int len, char ** values)
 {
-	char	**array;
+	char ** array;
 	int		i;
 
 	i = 0;
@@ -23,33 +23,13 @@ static char	**fh_getarray(int len, char **values)
 	array = ft_calloc(len + 1, sizeof(char *));
 	if (!array)
 		return (NULL);
-	while(values[++i])
+	while (values[++i])
 		array[i - 1] = ft_strdup(values[i]);
 	array[i] = NULL;
 	return (array);
 }
 
-void	fh_print(t_stack *a, t_stack *b, int amount)
-{
-	printf("---------------\n");
-	for (int i = 0; i < amount; i++)
-	{
-		if (i < a->length)
-			printf("%7d", a->array[i]);
-		else
-			printf("%7s", "");
-		if (i < a->length || i < b->length)
-			printf("|");
-		if (i < b->length)
-			printf("%-7d\n", b->array[i]);
-		else
-			printf("%-7s\n", "");
-	}
-	printf("---------------\n");
-	printf("   a   |   b   \n");
-}
-
-void	fh_initstack(t_stack **stack, char *name, size_t size)
+void fh_initstack(t_stack ** stack, char * name, size_t size)
 {
 	(*stack) = malloc(sizeof(t_stack));
 	(*stack)->array = malloc(size * sizeof(int));
@@ -59,7 +39,7 @@ void	fh_initstack(t_stack **stack, char *name, size_t size)
 		(*stack)->length = 0;
 }
 
-static int	fh_issrted(t_stack *a, t_stack *b)
+int fh_issrted(t_stack * a, t_stack * b)
 {
 	if (b->length > 0)
 		return (0);
@@ -71,18 +51,17 @@ static int	fh_issrted(t_stack *a, t_stack *b)
 				return (0);
 		}
 	}
-	
 	return (1);
 }
 
-int	main(int argc, char *argv[])
+int main(int argc, char * argv[])
 {
-	t_stack		*a;
-	t_stack		*b;
-	char		**values;
-	int			size;
-	int			i;
-	int			toprint;
+	t_stack * a;
+	t_stack * b;
+	char **	  values;
+	int		  size;
+	int		  i;
+	int		  toprint;
 
 	if (argc <= 1)
 		return (0);
@@ -102,9 +81,7 @@ int	main(int argc, char *argv[])
 		free(values[i++]);
 	}
 	free(values);
-	push_swap(a, b, !toprint);
-	if (toprint)
-		fh_print(a, b, a->length > b->length ? a->length : b->length);
+	push_swap(a, b);
 	if (toprint && fh_issrted(a, b))
 		printf("\033[0;92mIs sorted :D\033[0;39m\n\n");
 	else if (toprint)

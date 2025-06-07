@@ -46,7 +46,9 @@
     "type_traits": "c",
     "typeinfo": "c",
     "string_view": "c",
-    "regex": "c"
+    "regex": "c",
+    "stdio.h": "c",
+    "bitset": "c"
   },
   "C_Cpp_Runner.msvcWarnings": [
     "/W4",
