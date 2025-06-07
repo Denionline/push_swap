@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 12:36:21 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/06 14:32:57 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/07 18:15:52 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ t_moves calc_moves(t_stack * a, t_stack * b, int number)
 	moves.b = moves_b;
 	if (moves.reverse_b)
 		moves.b = b->length - moves_b;
+	moves.total = moves.a;
 	if (moves.reverse_a == moves.reverse_b && moves.a > moves.b)
 		moves.total = moves.a;
 	if (moves.reverse_a == moves.reverse_b && moves.b > moves.a)
