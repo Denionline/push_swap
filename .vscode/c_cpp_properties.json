@@ -1,17 +1,17 @@
 {
   "configurations": [
     {
-      "name": "linux-gcc-x64",
+      "name": "linux-clang-x64",
       "includePath": [
-        "${workspaceFolder}/**"
+        "${workspaceFolder}/**",
+        "${workspaceFolder}/include",
+        "${workspaceFolder}/include/libft"
       ],
-      "compilerPath": "/usr/bin/gcc",
+      "compilerPath": "/usr/bin/cc",
       "cStandard": "${default}",
       "cppStandard": "${default}",
-      "intelliSenseMode": "linux-gcc-x64",
-      "compilerArgs": [
-        ""
-      ]
+      "intelliSenseMode": "linux-clang-x64",
+      "compilerArgs": []
     }
   ],
   "version": 4

@@ -6,11 +6,34 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:50:40 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/09 19:16:43 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/09 20:19:05 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
+
+static int get_next(int * array, int len, int number)
+{
+	int i;
+	int actual;
+
+	actual = number;
+	i = 0;
+	while (i < len)
+	{
+		if (array[i] > actual)
+			actual = array[i];
+		i++;
+	}
+	i = 0;
+	while (i < len)
+	{
+		if (array[i] < actual && array[i] > number)
+			actual = array[i];
+		i++;
+	}
+	return (actual);
+}
 
 static int * get_better(int * array, int * better, int len)
 {
@@ -19,10 +42,11 @@ static int * get_better(int * array, int * better, int len)
 
 	j = 0;
 	i = 0;
+	better[j] = array[i];
 	while (i < len)
 	{
-		if (array[i] < array[i + 1])
-			better[j++] = array[i];
+		if (array[i] != get_next(array + i, len, array[i]))
+			better[++j] = get_next(array + i, len, array[i]);
 		i++;
 	}
 	return (better);
@@ -37,7 +61,7 @@ static int get_possibilities(int * array, int len)
 	i = 0;
 	while (i < len)
 	{
-		if (array[i] < array[i + 1])
+		if (array[i] != get_next(array + i, len, array[i]))
 			amount++;
 		i++;
 	}
@@ -55,13 +79,13 @@ int * better_array(t_stack * a, t_moves * moves)
 	new_better = malloc((a->length / 2) * sizeof(int));
 	if (!new_better)
 		return (NULL);
-	best_possibilities = a->length;
+	best_possibilities = 0;
 	position = 0;
 	i = 0;
 	while (i < a->length)
 	{
 		possibilities = get_possibilities(a->array + i, a->length);
-		if (possibilities < best_possibilities)
+		if (possibilities > best_possibilities)
 		{
 			best_possibilities = possibilities;
 			position = i;
@@ -69,5 +93,6 @@ int * better_array(t_stack * a, t_moves * moves)
 		i++;
 	}
 	moves->better_len = best_possibilities;
-	return (get_better(a->array + position, new_better, moves->better_len));
+	new_better = get_better(a->array + position, new_better, moves->better_len);
+	return (new_better);
 }
