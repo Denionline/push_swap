@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:27:10 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/09 18:24:50 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/09 18:35:40 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,6 @@ static int * get_sorted_array(t_stack * a)
 	int * sorted = malloc(a->length * sizeof(int));
 	for (int i = 0; i < a->length; i++)
 		sorted[i] = a->array[i];
-	// Use your own sorting function or qsort
-	// qsort(sorted, a->length, sizeof(int), cmp);
 	return sorted;
 }
 
