@@ -44,6 +44,7 @@ FILES		+= rrn
 FILES		+= rrr
 FILES		+= calc_moves
 FILES		+= rotates
+FILES		+= better_array
 
 SRC_FILES	= $(addprefix ./, $(FILES))
 SRCS		= $(addprefix ./, $(addsuffix .c, $(SRC_FILES)))
