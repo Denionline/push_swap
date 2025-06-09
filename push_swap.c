@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:27:10 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/09 15:33:26 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/09 17:57:27 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static int in_chunk(int value, int * sorted, int start, int end)
 
 void push_swap(t_stack * a, t_stack * b)
 {
-	int	  chunk_count = 11; // Tune this for best results
+	int	  chunk_count = 11;
 	int * sorted = get_sorted_array(a);
 	int	  chunk_size = a->length / chunk_count;
 	int	  chunk_start, chunk_end;
@@ -95,8 +95,6 @@ void push_swap(t_stack * a, t_stack * b)
 	{
 		chunk_start = c * chunk_size;
 		chunk_end = (c == chunk_count - 1) ? a->length : (c + 1) * chunk_size;
-
-		// Keep pushing elements in this chunk until none are left in 'a'
 		int found_in_chunk;
 		do
 		{
@@ -125,8 +123,6 @@ void push_swap(t_stack * a, t_stack * b)
 			}
 		} while (found_in_chunk && a->length > 3);
 	}
-
-	// Push any remaining elements (not in any chunk) except the last three
 	while (a->length > 3)
 	{
 		t_moves best_moves;
@@ -148,7 +144,6 @@ void push_swap(t_stack * a, t_stack * b)
 			pn(a, b);
 		}
 	}
-
 	free(sorted);
 	order_last_three(a);
 	get_back(a, b);
