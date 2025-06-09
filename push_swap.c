@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:27:10 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/09 08:27:38 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/09 15:33:26 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,17 +90,19 @@ void push_swap(t_stack * a, t_stack * b)
 	int * sorted = get_sorted_array(a);
 	int	  chunk_size = a->length / chunk_count;
 	int	  chunk_start, chunk_end;
-	int	  pushed = 0;
 
-	for (int c = 0; c < chunk_count; c++)
+	for (int c = 0; c < chunk_count && a->length > 3; c++)
 	{
 		chunk_start = c * chunk_size;
 		chunk_end = (c == chunk_count - 1) ? a->length : (c + 1) * chunk_size;
-		while (pushed < chunk_end && a->length > 3)
+
+		// Keep pushing elements in this chunk until none are left in 'a'
+		int found_in_chunk;
+		do
 		{
+			found_in_chunk = 0;
 			t_moves best_moves;
 			int		found = 0;
-			// Find the cheapest move for an element in this chunk
 			for (int i = 0; i < a->length; i++)
 			{
 				if (in_chunk(a->array[i], sorted, chunk_start, chunk_end))
@@ -110,21 +112,43 @@ void push_swap(t_stack * a, t_stack * b)
 					{
 						best_moves = moves;
 						found = 1;
+						found_in_chunk = 1;
 					}
 				}
 			}
-			if (found)
+			if (found && a->length > 3)
 			{
 				if (best_moves.reverse_a == best_moves.reverse_b)
 					rotate_two(a, b, &best_moves);
 				rotate_one(a, b, &best_moves);
 				pn(a, b);
-				pushed++;
 			}
-			else
-				break;
+		} while (found_in_chunk && a->length > 3);
+	}
+
+	// Push any remaining elements (not in any chunk) except the last three
+	while (a->length > 3)
+	{
+		t_moves best_moves;
+		int		found = 0;
+		for (int i = 0; i < a->length; i++)
+		{
+			t_moves moves = calc_moves(a, b, a->array[i]);
+			if (!found || moves.total < best_moves.total)
+			{
+				best_moves = moves;
+				found = 1;
+			}
+		}
+		if (found)
+		{
+			if (best_moves.reverse_a == best_moves.reverse_b)
+				rotate_two(a, b, &best_moves);
+			rotate_one(a, b, &best_moves);
+			pn(a, b);
 		}
 	}
+
 	free(sorted);
 	order_last_three(a);
 	get_back(a, b);
