@@ -6,12 +6,11 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:27:10 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/09 21:36:28 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/09 21:39:08 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
-#include <stdlib.h>
 
 static void order_last_three(t_stack * a)
 {
@@ -67,65 +66,49 @@ static void put_on_top(t_stack * n, int number)
 	}
 }
 
-// Helper: copy and sort the array
-static int * get_sorted_array(t_stack * a)
+static int is_on_better(int number, t_moves * moves)
 {
-	int * sorted = malloc(a->length * sizeof(int));
-	for (int i = 0; i < a->length; i++)
-		sorted[i] = a->array[i];
-	// Use your own sorting function or qsort
-	// qsort(sorted, a->length, sizeof(int), cmp);
-	return sorted;
-}
+	int i;
 
-// Returns 1 if value is in chunk [start, end)
-static int in_chunk(int value, int * sorted, int start, int end)
-{
-	return (value >= sorted[start] && value < sorted[end]);
+	i = 0;
+	while (i < moves->better_len)
+	{
+		if (moves->better[i] == number)
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
 void push_swap(t_stack * a, t_stack * b)
 {
-	int	  chunk_count = 11; // Tune this for best results
-	int * sorted = get_sorted_array(a);
-	int	  chunk_size = a->length / chunk_count;
-	int	  chunk_start, chunk_end;
-	int	  pushed = 0;
+	t_moves current_moves;
+	t_moves moves;
+	int		i;
 
-	for (int c = 0; c < chunk_count; c++)
+	pn(a, b);
+	pn(a, b);
+	moves.better = better_array(a, &moves);
+	while (a->length > 3)
 	{
-		chunk_start = c * chunk_size;
-		chunk_end = (c == chunk_count - 1) ? a->length : (c + 1) * chunk_size;
-		while (pushed < chunk_end && a->length > 3)
+		i = 0;
+		moves = calc_moves(a, b, a->array[i]);
+		while (!is_on_better(a->array[i++], &moves) && i < a->length)
 		{
-			t_moves best_moves;
-			int		found = 0;
-			// Find the cheapest move for an element in this chunk
-			for (int i = 0; i < a->length; i++)
-			{
-				if (in_chunk(a->array[i], sorted, chunk_start, chunk_end))
-				{
-					t_moves moves = calc_moves(a, b, a->array[i]);
-					if (!found || moves.total < best_moves.total)
-					{
-						best_moves = moves;
-						found = 1;
-					}
-				}
-			}
-			if (found)
-			{
-				if (best_moves.reverse_a == best_moves.reverse_b)
-					rotate_two(a, b, &best_moves);
-				rotate_one(a, b, &best_moves);
-				pn(a, b);
-				pushed++;
-			}
-			else
-				break;
+			current_moves = calc_moves(a, b, a->array[i]);
+			if (moves.total > current_moves.total)
+				moves = current_moves;
+		}
+		if (is_on_better(a->array[i++], &moves))
+			rn(a, TRUE);
+		else
+		{
+			if (moves.reverse_a == moves.reverse_b)
+				rotate_two(a, b, &moves);
+			rotate_one(a, b, &moves);
+			pn(a, b);
 		}
 	}
-	free(sorted);
 	order_last_three(a);
 	get_back(a, b);
 	put_on_top(a, get_smaller(a));
