@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:27:10 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/09 19:32:19 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/11 11:22:27 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,19 +66,19 @@ static void put_on_top(t_stack * n, int number)
 	}
 }
 
-static int is_on_better(int number, t_moves * moves)
-{
-	int i;
+// static int is_on_better(int number, t_moves * moves)
+// {
+// 	int i;
 
-	i = 0;
-	while (i < moves->better_len)
-	{
-		if (moves->better[i] == number)
-			return (1);
-		i++;
-	}
-	return (0);
-}
+// 	i = 0;
+// 	while (i < moves->better_len)
+// 	{
+// 		if (moves->better[i] == number)
+// 			return (1);
+// 		i++;
+// 	}
+// 	return (0);
+// }
 
 void push_swap(t_stack * a, t_stack * b)
 {
@@ -88,26 +88,21 @@ void push_swap(t_stack * a, t_stack * b)
 
 	pn(a, b);
 	pn(a, b);
-	moves.better = better_array(a, &moves);
+	// better_array(a, &moves);
 	while (a->length > 3)
 	{
 		i = 0;
 		moves = calc_moves(a, b, a->array[i]);
-		while (!is_on_better(a->array[i++], &moves) && i < a->length)
+		while (++i < a->length)
 		{
 			current_moves = calc_moves(a, b, a->array[i]);
 			if (moves.total > current_moves.total)
 				moves = current_moves;
 		}
-		if (is_on_better(a->array[i++], &moves))
-			rn(a, TRUE);
-		else
-		{
-			if (moves.reverse_a == moves.reverse_b)
-				rotate_two(a, b, &moves);
-			rotate_one(a, b, &moves);
-			pn(a, b);
-		}
+		if (moves.reverse_a == moves.reverse_b)
+			rotate_two(a, b, &moves);
+		rotate_one(a, b, &moves);
+		pn(a, b);
 	}
 	order_last_three(a);
 	get_back(a, b);
