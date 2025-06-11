@@ -87,32 +87,6 @@ $(ARQUIVE): $(OBJS) $(LIBFT)
 	@$(CC) $(CFLAGS) -I $(INC) -c $< -o $@
 	@printf "Compiling $(C_YELLOW)$<$(C_STD)...\n"
 
-pr:
-	@clear
-	@printf "Test 1:\n"
-	@./$(EXEC) p $(TEST1)
-	@printf "\nTest 2:\n"
-	@./$(EXEC) p $(TEST2)
-	@printf "\nTest 3:\n"
-	@./$(EXEC) p $(TEST3)
-	@printf "\nTest 4:\n"
-	@./$(EXEC) p $(TEST4)
-	@printf "\nTest 5:\n"
-	@./$(EXEC) p $(TEST5)
-
-cop:
-	@clear
-	@printf "Test 1:\n"
-	@./$(EXEC) $(TEST1) | ./countop.sh
-	@printf "\nTest 2:\n"
-	@./$(EXEC) $(TEST2) | ./countop.sh
-	@printf "\nTest 3:\n"
-	@./$(EXEC) $(TEST3) | ./countop.sh
-	@printf "\nTest 4:\n"
-	@./$(EXEC) $(TEST4) | ./countop.sh
-	@printf "\nTest 5:\n"
-	@./$(EXEC) $(TEST5) | ./countop.sh
-
 help:
 	@printf "\n$(C_MAGENTA)MAKE TYPES$(C_STD)\n\n"
 	@printf "[$(C_GREEN)pr$(C_STD)] = Print the sorted array;\n"
