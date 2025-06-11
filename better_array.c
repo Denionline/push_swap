@@ -10,86 +10,103 @@
 // /*                                                                            */
 // /* ************************************************************************** */
 
-// #include "include/push_swap.h"
+#include "include/push_swap.h"
 
-// static int get_next(int * array, int len, int number)
-// {
-// 	int i;
-// 	int actual;
+static int get_next(int * array, int len, int number)
+{
+	int bigger;
+	int actual;
+	int i;
 
-// 	actual = number;
-// 	i = 0;
-// 	while (i < len)
-// 	{
-// 		if (array[i] > actual)
-// 			actual = array[i];
-// 		i++;
-// 	}
-// 	i = 0;
-// 	while (i < len)
-// 	{
-// 		if (array[i] < actual && array[i] > number)
-// 			actual = array[i];
-// 		i++;
-// 	}
-// 	return (actual);
-// }
+	bigger = number;
+	i = 0;
+	while (i < len)
+	{
+		if (array[i] > bigger)
+			bigger = array[i];
+		i++;
+	}
+	actual = bigger;
+	i = 0;
+	while (i < len)
+	{
+		if (array[i] < actual && array[i] > number)
+			actual = array[i];
+		i++;
+	}
+	if (actual == bigger)
+		return (number);
+	return (actual);
+}
 
-// static void get_better(int * array, t_moves * moves)
-// {
-// 	int j;
-// 	int i;
+static int get_idx(int * array, int number)
+{
+	int i;
 
-// 	j = 0;
-// 	i = 0;
-// 	moves->better[j] = array[i];
-// 	while (i < moves->better_len)
-// 	{
-// 		if (array[i] < get_next(array + i, moves->better_len, array[i]))
-// 			moves->better[++j] = get_next(array + i, moves->better_len, array[i]);
-// 		i++;
-// 	}
-// }
+	i = 0;
+	while (array[i] != number)
+		i++;
+	return (i);
+}
 
-// static int get_possibilities(int * array, int len)
-// {
-// 	int amount;
-// 	int i;
+static void get_better(int * array, int len, t_moves * moves)
+{
+	int current;
+	int i;
+	int j;
 
-// 	amount = 0;
-// 	i = 0;
-// 	while (i < len)
-// 	{
-// 		if (array[i] != get_next(array + i, len, array[i]))
-// 			amount++;
-// 		i++;
-// 	}
-// 	return (amount);
-// }
+	j = 0;
+	i = 0;
+	current = array[i];
+	while (current != get_next(array + i, len - i, current))
+	{
+		current = get_next(array + i, len - i, current);
+		i += get_idx(array, current);
+		moves->better[j++] = current;
+	}
+}
 
-// void better_array(t_stack * a, t_moves * moves)
-// {
-// 	int best_possibilities;
-// 	int possibilities;
-// 	int position;
-// 	int i;
+static int get_possibilities(int * array, int len)
+{
+	int current;
+	int amount;
+	int i;
 
-// 	moves->better = malloc((a->length / 2) * sizeof(int));
-// 	if (!moves->better)
-// 		return;
-// 	best_possibilities = 0;
-// 	position = 0;
-// 	i = 0;
-// 	while (i < a->length)
-// 	{
-// 		possibilities = get_possibilities(a->array + i, a->length);
-// 		if (possibilities > best_possibilities)
-// 		{
-// 			best_possibilities = possibilities;
-// 			position = i;
-// 		}
-// 		i++;
-// 	}
-// 	moves->better_len = best_possibilities;
-// 	get_better(a->array + position, moves);
-// }
+	amount = 0;
+	i = 0;
+	current = array[i];
+	while (current != get_next(array + i, len - i, current))
+	{
+		current = get_next(array + i, len - i, current);
+		i += get_idx(array, current);
+		amount++;
+	}
+	return (amount);
+}
+
+void better_array(t_stack * a, t_moves * moves)
+{
+	int best_possibilities;
+	int possibilities;
+	int position;
+	int i;
+
+	moves->better = malloc((a->length / 2) * sizeof(int));
+	if (!moves->better)
+		return;
+	best_possibilities = 0;
+	position = 0;
+	i = 0;
+	while (i < a->length)
+	{
+		possibilities = get_possibilities(a->array + i, a->length);
+		if (possibilities > best_possibilities)
+		{
+			best_possibilities = possibilities;
+			position = i;
+		}
+		i++;
+	}
+	moves->better_len = best_possibilities;
+	get_better(a->array + position, a->length, moves);
+}

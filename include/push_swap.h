@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:38:54 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/11 11:22:19 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/11 12:41:17 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void rr(t_stack * a, t_stack * b);
 void rrr(t_stack * a, t_stack * b);
 
 // helpers
-// void	better_array(t_stack * a, t_moves * moves);
+void	better_array(t_stack * a, t_moves * moves);
 t_moves calc_moves(t_stack * a, t_stack * b, int number);
 int		fh_issrted(t_stack * a, t_stack * b);
 int		get_bigger_pos(t_stack * b, int number);

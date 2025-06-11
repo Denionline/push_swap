@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:27:10 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/11 11:22:27 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/11 12:41:29 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void push_swap(t_stack * a, t_stack * b)
 
 	pn(a, b);
 	pn(a, b);
-	// better_array(a, &moves);
+	better_array(a, &moves);
 	while (a->length > 3)
 	{
 		i = 0;
