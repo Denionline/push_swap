@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:37:48 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/04 15:11:56 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/12 23:43:30 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int main(int argc, char * argv[])
 	if (argc <= 1)
 		return (0);
 	toprint = 0;
-	if (*argv[1] == 'p')
+	if (*argv[1] == 's')
 		toprint = *(argv++) != NULL;
 	values = fh_getarray(argc, argv);
 	size = 0;
@@ -83,8 +83,8 @@ int main(int argc, char * argv[])
 	free(values);
 	push_swap(a, b);
 	if (toprint && fh_issrted(a, b))
-		printf("\033[0;92mIs sorted :D\033[0;39m\n\n");
+		printf("\033[0;92mIs sorted :D\033[0;39m\n");
 	else if (toprint)
-		printf("\033[0;91mIs NOT sorted :(\033[0;39m\n\n");
+		printf("\033[0;91mIs NOT sorted :(\033[0;39m\n");
 	return (0);
 }
