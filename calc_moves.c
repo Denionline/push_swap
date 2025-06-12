@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 12:36:21 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/07 18:15:52 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/12 23:00:13 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,29 +89,63 @@ int get_bigger_pos(t_stack * b, int number)
 	return (get_pos(b, bigger));
 }
 
+static void get_min_moves(t_stack * a, t_stack * b, t_moves * moves)
+{
+	int ra = moves->a;
+	int rb = moves->b;
+	int rra = a->length - moves->a;
+	int rrb = b->length - moves->b;
+	int rr = ra > rb ? ra : rb;
+	int rrr = rra > rrb ? rra : rrb;
+	int	temp_a = ra;
+	int	temp_b = rb;
+
+
+	if (temp_a > (a->length / 2))
+	{
+		moves->reverse_a = TRUE;
+		temp_a = a->length - temp_a;
+	}
+	if (temp_b > (b->length / 2))
+	{
+		moves->reverse_b = TRUE;
+		temp_b = b->length - temp_b;
+	}
+
+	if (moves->reverse_a != moves->reverse_b)
+	{
+		if ((temp_a + temp_b) <)
+	}
+
+	if (rr < rrr)
+	{
+		moves->reverse_a = FALSE;
+		moves->reverse_b = FALSE;
+		moves->total = rr;
+	}
+	else
+	{
+		moves->a = rra;
+		moves->reverse_a = TRUE;
+		moves->b = rrb;
+		moves->reverse_b = TRUE;
+		moves->total = rrr;
+	}
+}
+
 t_moves calc_moves(t_stack * a, t_stack * b, int number)
 {
 	t_moves moves;
-	int		moves_a;
-	int		moves_b;
+	// int		max_moves;
+	// int		moves_a;
+	// int		moves_b;
 
 	ft_memset(&moves, 0, sizeof(moves));
-	moves_a = get_pos(a, number);
-	moves.reverse_a = moves_a > (a->length / 2);
-	moves.a = moves_a;
-	if (moves.reverse_a)
-		moves.a = a->length - moves_a;
-	moves_b = get_smaller_pos(b, number);
-	moves.reverse_b = moves_b > (b->length / 2);
-	moves.b = moves_b;
-	if (moves.reverse_b)
-		moves.b = b->length - moves_b;
-	moves.total = moves.a;
-	if (moves.reverse_a == moves.reverse_b && moves.a > moves.b)
-		moves.total = moves.a;
-	if (moves.reverse_a == moves.reverse_b && moves.b > moves.a)
-		moves.total = moves.b;
-	if (moves.reverse_a != moves.reverse_b)
-		moves.total = moves.a + moves.b;
+
+	moves.a = get_pos(a, number);
+	moves.b = get_smaller_pos(b, number);
+
+	get_min_moves(a, b, &moves);
+
 	return (moves);
 }
