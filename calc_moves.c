@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 12:36:21 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/07 18:15:52 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/12 15:17:52 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ t_moves calc_moves(t_stack * a, t_stack * b, int number)
 	moves.a = moves_a;
 	if (moves.reverse_a)
 		moves.a = a->length - moves_a;
-	moves_b = get_smaller_pos(b, number);
+	moves_b = get_bigger_pos(b, number);
 	moves.reverse_b = moves_b > (b->length / 2);
 	moves.b = moves_b;
 	if (moves.reverse_b)
