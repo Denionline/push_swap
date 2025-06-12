@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:27:10 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/11 14:41:25 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/12 10:18:55 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,19 +66,19 @@ static void put_on_top(t_stack * n, int number)
 	}
 }
 
-// static int is_on_better(int number, t_moves * moves)
-// {
-// 	int i;
+static int is_on_better(int number, t_moves * moves)
+{
+	int i;
 
-// 	i = 0;
-// 	while (i < moves->better_len)
-// 	{
-// 		if (moves->better[i] == number)
-// 			return (1);
-// 		i++;
-// 	}
-// 	return (0);
-// }
+	i = 0;
+	while (i < moves->better_len)
+	{
+		if (moves->better[i] == number)
+			return (TRUE);
+		i++;
+	}
+	return (FALSE);
+}
 
 void push_swap(t_stack * a, t_stack * b)
 {
@@ -89,9 +89,11 @@ void push_swap(t_stack * a, t_stack * b)
 	pn(a, b);
 	pn(a, b);
 	better_array(a, &moves);
-	while (a->length > 3)
+	while (a->length > moves.better_len)
 	{
 		i = 0;
+		if (is_on_better(a->array[i], &moves) && ++i)
+			rn(a, TRUE);
 		moves = calc_moves(a, b, a->array[i]);
 		while (++i < a->length)
 		{

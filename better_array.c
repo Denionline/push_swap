@@ -99,7 +99,7 @@ void better_array(t_stack * a, t_moves * moves)
 	i = 0;
 	while (i < a->length)
 	{
-		possibilities = get_possibilities(a->array + i, a->length);
+		possibilities = get_possibilities(a->array + i, a->length - i);
 		if (possibilities > best_possibilities)
 		{
 			best_possibilities = possibilities;
@@ -108,5 +108,5 @@ void better_array(t_stack * a, t_moves * moves)
 		i++;
 	}
 	moves->better_len = best_possibilities;
-	get_better(a->array + position, a->length, moves);
+	get_better(a->array + position, a->length - position, moves);
 }
