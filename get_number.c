@@ -1,30 +1,58 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rrn.c                                              :+:      :+:    :+:   */
+/*   get_number.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 13:44:06 by dximenes          #+#    #+#             */
+/*   Created: 2025/06/13 15:12:55 by dximenes          #+#    #+#             */
 /*   Updated: 2025/06/13 15:18:57 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-void rrn(t_stack * n, int toprint)
+int get_pos(t_stack * n, int number)
 {
-	int tomove;
-	int i;
+	int pos;
 
-	tomove = n->array[n->len - 1];
-	i = n->len + 1;
-	while (--i > 0)
-		n->array[i] = n->array[i - 1];
-	n->array[0] = tomove;
-	if (toprint)
+	pos = 0;
+	while (pos < n->len)
 	{
-		ft_putstr_fd("rr", 1);
-		ft_putendl_fd(n->name, 1);
+		if (n->array[pos] == number)
+			return (pos);
+		pos++;
 	}
+	return (-1);
+}
+
+int get_bigger(t_stack * n)
+{
+	int bigger;
+	int pos;
+
+	bigger = n->array[0];
+	pos = 0;
+	while (pos < n->len)
+	{
+		if (n->array[pos] > bigger)
+			bigger = n->array[pos];
+		pos++;
+	}
+	return (bigger);
+}
+int get_smaller(t_stack * n)
+{
+	int smaller;
+	int pos;
+
+	smaller = n->array[0];
+	pos = 0;
+	while (pos < n->len)
+	{
+		if (n->array[pos] < smaller)
+			smaller = n->array[pos];
+		pos++;
+	}
+	return (smaller);
 }

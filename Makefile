@@ -44,7 +44,8 @@ FILES		+= rrn
 FILES		+= rrr
 FILES		+= calc_moves
 FILES		+= rotates
-FILES		+= better_array
+FILES		+= get_number
+FILES		+= find_lis_sequence
 
 SRC_FILES	= $(addprefix ./, $(FILES))
 SRCS		= $(addprefix ./, $(addsuffix .c, $(SRC_FILES)))

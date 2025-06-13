@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:38:54 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/11 12:41:17 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/13 15:18:57 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ typedef struct s_moves
 	int	  b;
 	int	  reverse_a;
 	int	  reverse_b;
-	int * better;
-	int	  better_len;
+	int * best_seq;
+	int	  best_seq_len;
 	int	  total;
 } t_moves;
 
@@ -33,7 +33,7 @@ typedef struct s_stack
 {
 	char * name;
 	int *  array;
-	int	   length;
+	int	   len;
 } t_stack;
 
 int	 main(int argc, char * argv[]);
@@ -52,13 +52,12 @@ void ss(t_stack * a, t_stack * b);
 void rr(t_stack * a, t_stack * b);
 void rrr(t_stack * a, t_stack * b);
 
-// helpers
-void	better_array(t_stack * a, t_moves * moves);
+// calc_moves.c
 t_moves calc_moves(t_stack * a, t_stack * b, int number);
 int		fh_issrted(t_stack * a, t_stack * b);
-int		get_bigger_pos(t_stack * b, int number);
-int		get_smaller_pos(t_stack * b, int number);
-int		get_smaller(t_stack * n);
+int *	find_lis_sequence(int * array, int len, int * lis_len);
+//get_number.c
 int		get_bigger(t_stack * n);
+int		get_smaller(t_stack * n);
 int		get_pos(t_stack * n, int number);
 #endif

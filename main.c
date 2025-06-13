@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:37:48 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/13 11:50:04 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/13 15:18:57 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,19 @@ void fh_initstack(t_stack ** stack, char * name, size_t size)
 {
 	(*stack) = malloc(sizeof(t_stack));
 	(*stack)->array = malloc(size * sizeof(int));
-	(*stack)->length = size;
+	(*stack)->len = size;
 	(*stack)->name = name;
 	if (*name == 'b')
-		(*stack)->length = 0;
+		(*stack)->len = 0;
 }
 
 int fh_issrted(t_stack * a, t_stack * b)
 {
-	if (b->length > 0)
+	if (b->len > 0)
 		return (0);
-	for (int i = 0; i < a->length; i++)
+	for (int i = 0; i < a->len; i++)
 	{
-		for (int j = i; j < a->length; j++)
+		for (int j = i; j < a->len; j++)
 		{
 			if (a->array[i] > a->array[j])
 				return (FALSE);

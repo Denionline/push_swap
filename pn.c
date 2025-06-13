@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 11:38:09 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/07 18:27:57 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/13 15:18:57 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void pn(t_stack * from, t_stack * to)
 
 	temp = from->array[0];
 	i = -1;
-	while (++i < from->length)
+	while (++i < from->len)
 		from->array[i] = from->array[i + 1];
-	from->length--;
-	i = (to->length++) + 1;
+	from->len--;
+	i = (to->len++) + 1;
 	while (--i > 0)
 		to->array[i] = to->array[i - 1];
 	to->array[0] = temp;
