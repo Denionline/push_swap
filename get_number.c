@@ -6,15 +6,15 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 15:12:55 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/13 15:42:33 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/13 23:20:19 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-int get_pos(t_stack * n, int number)
+size_t get_pos(t_stack * n, size_t number)
 {
-	int	pos;
+	size_t	pos;
 
 	pos = 0;
 	while (pos < n->len)
@@ -26,10 +26,10 @@ int get_pos(t_stack * n, int number)
 	return (-1);
 }
 
-int get_bigger(t_stack * n)
+size_t get_bigger(t_stack * n)
 {
-	int	bigger;
-	int	pos;
+	size_t	bigger;
+	size_t	pos;
 
 	bigger = n->array[0];
 	pos = 0;
@@ -41,10 +41,10 @@ int get_bigger(t_stack * n)
 	}
 	return (bigger);
 }
-int get_smaller(t_stack * n)
+size_t get_smaller(t_stack * n)
 {
-	int	smaller;
-	int	pos;
+	size_t	smaller;
+	size_t	pos;
 
 	smaller = n->array[0];
 	pos = 0;

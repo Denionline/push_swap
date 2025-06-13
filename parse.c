@@ -6,11 +6,21 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 17:50:14 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/13 21:19:15 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/13 23:16:56 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
+
+static int	fh_get_len(char **args)
+{
+	int len;
+
+	len = 0;
+	while (args[len])
+		len++;
+	return (len);
+}
 
 static void fh_initstack(t_stack **a, t_stack **b, int size)
 {
@@ -20,8 +30,8 @@ static void fh_initstack(t_stack **a, t_stack **b, int size)
 	ft_memset(*b, 0, sizeof(**b));
 	if (!(*a) || !(*b))
 		return (free((*a)), free((*b)));
-	(*a)->array = ft_calloc(size, sizeof(int));
-	(*b)->array = ft_calloc(size, sizeof(int));
+	(*a)->array = ft_calloc(size, sizeof(size_t));
+	(*b)->array = ft_calloc(size, sizeof(size_t));
 	if (!(*a)->array || !(*b)->array)
 		return (free((*a)->array), free((*b)->array));
 	(*a)->name = "a";
@@ -55,10 +65,9 @@ void	parse(t_stack **a, t_stack **b, char **args, int length)
 	values = fh_getarray(args, length);
 	if (!values)
 		return (free(values));
-	size = 0;
-	while (values[size])
-		size++;
+	size = fh_get_len(values);
 	fh_initstack(a, b, size);
+	check_args(*a, *b, values);
 	i = 0;
 	while (values[i])
 	{
@@ -66,4 +75,5 @@ void	parse(t_stack **a, t_stack **b, char **args, int length)
 		free(values[i++]);
 	}
 	free(values);
+	is_there_duplicate(*a, *b, (*a)->array, (*a)->len);
 }

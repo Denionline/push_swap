@@ -43,6 +43,7 @@ FILES		+= rr
 FILES		+= rrn
 FILES		+= rrr
 FILES		+= parse
+FILES		+= verify
 FILES		+= rotates
 FILES		+= calc_moves
 FILES		+= get_number
