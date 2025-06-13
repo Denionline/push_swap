@@ -6,15 +6,15 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 17:20:05 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/13 11:40:51 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/13 15:42:51 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-void rotate_one(t_stack * a, t_stack * b, t_moves * moves)
+void rotate_one(t_stack *a, t_stack *b, t_moves *moves)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < moves->a)
@@ -35,10 +35,10 @@ void rotate_one(t_stack * a, t_stack * b, t_moves * moves)
 		i++;
 	}
 }
-void rotate_two(t_stack * a, t_stack * b, t_moves * moves)
+void rotate_two(t_stack *a, t_stack *b, t_moves *moves)
 {
-	int amount;
-	int i;
+	int	amount;
+	int	i;
 
 	if (moves->a > moves->b)
 		amount = moves->b;

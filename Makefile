@@ -33,8 +33,8 @@ LIBFT_URL	= https://github.com/Denionline/Libft.git
 INC			= include
 LIBFT_PATH	= $(INC)/libft/
 
-FILES		+= main
 FILES		+= push_swap
+FILES		+= sort
 FILES		+= sn
 FILES		+= ss
 FILES		+= pn
@@ -42,8 +42,9 @@ FILES		+= rn
 FILES		+= rr
 FILES		+= rrn
 FILES		+= rrr
-FILES		+= calc_moves
+FILES		+= parse
 FILES		+= rotates
+FILES		+= calc_moves
 FILES		+= get_number
 FILES		+= find_lis_sequence
 

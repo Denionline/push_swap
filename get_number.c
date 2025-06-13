@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 15:12:55 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/13 15:18:57 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/13 15:42:33 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int get_pos(t_stack * n, int number)
 {
-	int pos;
+	int	pos;
 
 	pos = 0;
 	while (pos < n->len)
@@ -28,8 +28,8 @@ int get_pos(t_stack * n, int number)
 
 int get_bigger(t_stack * n)
 {
-	int bigger;
-	int pos;
+	int	bigger;
+	int	pos;
 
 	bigger = n->array[0];
 	pos = 0;
@@ -43,8 +43,8 @@ int get_bigger(t_stack * n)
 }
 int get_smaller(t_stack * n)
 {
-	int smaller;
-	int pos;
+	int	smaller;
+	int	pos;
 
 	smaller = n->array[0];
 	pos = 0;
