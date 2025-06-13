@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:28:20 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/13 23:36:51 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/13 23:39:43 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ft_find_lis_sequence(size_t * array, size_t len, t_moves *moves)
 	size_t	*best_poss;
 	size_t	*best_idx;
 	size_t	max;
-	int	max_idx;
+	int		max_idx;
 
 	max = 0;
 	best_poss = malloc(len * sizeof(size_t));

@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 21:30:56 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/13 23:17:55 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/13 23:51:39 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,25 @@ void error(t_stack * a, t_stack * b, char ** to_clean)
 	exit(1);
 }
 
-void is_there_duplicate(t_stack * a, t_stack * b, size_t * array, int length)
+void is_exceding_limits(t_stack * a, t_stack * b, size_t * array, int len)
 {
 	int i;
-	int j;
+
+	i = 0;
+	while (i < len)
+	{
+		if (array[i] > (long)2147483647)
+			error(a, b, NULL);
+		else if ((long)array[i] < (long)INT_MIN)
+			error(a, b, NULL);
+		i++;
+	}
+}
+
+void is_there_duplicate(t_stack * a, t_stack * b, size_t * array, int length)
+{
+	int	   i;
+	int	   j;
 	size_t number;
 
 	i = 0;

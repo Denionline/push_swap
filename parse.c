@@ -6,13 +6,13 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 17:50:14 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/13 23:16:56 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/13 23:56:52 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-static int	fh_get_len(char **args)
+static int fh_get_len(char ** args)
 {
 	int len;
 
@@ -22,7 +22,7 @@ static int	fh_get_len(char **args)
 	return (len);
 }
 
-static void fh_initstack(t_stack **a, t_stack **b, int size)
+static void fh_initstack(t_stack ** a, t_stack ** b, int size)
 {
 	(*a) = malloc(sizeof(t_stack));
 	(*b) = malloc(sizeof(t_stack));
@@ -39,7 +39,7 @@ static void fh_initstack(t_stack **a, t_stack **b, int size)
 	(*a)->len = size;
 }
 
-static char **fh_getarray(char ** values, int len)
+static char ** fh_getarray(char ** values, int len)
 {
 	char ** array;
 	int		i;
@@ -56,9 +56,9 @@ static char **fh_getarray(char ** values, int len)
 	return (array);
 }
 
-void	parse(t_stack **a, t_stack **b, char **args, int length)
+void parse(t_stack ** a, t_stack ** b, char ** args, int length)
 {
-	char	**values;
+	char ** values;
 	int		size;
 	int		i;
 
@@ -76,4 +76,5 @@ void	parse(t_stack **a, t_stack **b, char **args, int length)
 	}
 	free(values);
 	is_there_duplicate(*a, *b, (*a)->array, (*a)->len);
+	is_exceding_limits(*a, *b, (*a)->array, (*a)->len);
 }
