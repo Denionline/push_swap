@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 12:36:21 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/12 15:17:52 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/13 09:47:20 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,48 @@ int get_bigger_pos(t_stack * b, int number)
 	return (get_pos(b, bigger));
 }
 
+static void set_moves(t_stack * a, t_stack * b, int posA, int posB, t_moves * moves)
+{
+	int ra = posA;
+	int rra = a->length - posA;
+	int rb = posB;
+	int rrb = b->length - posB;
+	int cost_up = ra > rb ? ra : rb;
+	int cost_down = rra > rrb ? rra : rrb;
+	int cost_mix1 = ra + rrb;
+	int cost_mix2 = rra + rb;
+
+	moves->total = cost_up;
+	moves->reverse_a = moves->reverse_b = 0;
+	moves->a = ra;
+	moves->b = rb;
+
+	if (cost_down < moves->total)
+	{
+		moves->total = cost_down;
+		moves->reverse_a = 1;
+		moves->reverse_b = 1;
+		moves->a = rra;
+		moves->b = rrb;
+	}
+	if (cost_mix1 < moves->total)
+	{
+		moves->total = cost_mix1;
+		moves->reverse_a = 0;
+		moves->reverse_b = 1;
+		moves->a = ra;
+		moves->b = rrb;
+	}
+	if (cost_mix2 < moves->total)
+	{
+		moves->total = cost_mix2;
+		moves->reverse_a = 1;
+		moves->reverse_b = 0;
+		moves->a = rra;
+		moves->b = rb;
+	}
+}
+
 t_moves calc_moves(t_stack * a, t_stack * b, int number)
 {
 	t_moves moves;
@@ -101,7 +143,7 @@ t_moves calc_moves(t_stack * a, t_stack * b, int number)
 	moves.a = moves_a;
 	if (moves.reverse_a)
 		moves.a = a->length - moves_a;
-	moves_b = get_bigger_pos(b, number);
+	moves_b = get_smaller_pos(b, number);
 	moves.reverse_b = moves_b > (b->length / 2);
 	moves.b = moves_b;
 	if (moves.reverse_b)
@@ -112,6 +154,6 @@ t_moves calc_moves(t_stack * a, t_stack * b, int number)
 	if (moves.reverse_a == moves.reverse_b && moves.b > moves.a)
 		moves.total = moves.b;
 	if (moves.reverse_a != moves.reverse_b)
-		moves.total = moves.a + moves.b;
+		set_moves(a, b, moves_a, moves_b, &moves);
 	return (moves);
 }
