@@ -6,47 +6,47 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:27:10 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/12 17:44:03 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/13 09:53:38 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-// static void order_last_three(t_stack * a)
-// {
-// 	if (a->array[0] > a->array[1] && a->array[1] > a->array[2])
-// 		rn(a, TRUE);
-// 	else if (a->array[2] < a->array[1] && a->array[2] > a->array[0])
-// 		rrn(a, TRUE);
-// 	else if (a->array[0] > a->array[1] && a->array[0] > a->array[2])
-// 		rn(a, TRUE);
-// 	else if (a->array[2] < a->array[0] && a->array[2] < a->array[1])
-// 		rrn(a, TRUE);
-// 	if (a->array[0] > a->array[1])
-// 		sn(a, TRUE);
-// }
+static void order_last_three(t_stack * a)
+{
+	if (a->array[0] > a->array[1] && a->array[1] > a->array[2])
+		rn(a, TRUE);
+	else if (a->array[2] < a->array[1] && a->array[2] > a->array[0])
+		rrn(a, TRUE);
+	else if (a->array[0] > a->array[1] && a->array[0] > a->array[2])
+		rn(a, TRUE);
+	else if (a->array[2] < a->array[0] && a->array[2] < a->array[1])
+		rrn(a, TRUE);
+	if (a->array[0] > a->array[1])
+		sn(a, TRUE);
+}
 
-// static void get_back(t_stack * a, t_stack * b)
-// {
-// 	int moves_b;
-// 	int i;
+static void get_back(t_stack * a, t_stack * b)
+{
+	int moves_b;
+	int i;
 
-// 	moves_b = 0;
-// 	while (b->length > 0)
-// 	{
-// 		i = 0;
-// 		moves_b = get_bigger_pos(a, b->array[0]);
-// 		if (moves_b > (a->length / 2))
-// 			while (i++ < (a->length - moves_b))
-// 				rrn(a, TRUE);
-// 		else
-// 			while (i++ < moves_b)
-// 				rn(a, TRUE);
-// 		pn(b, a);
-// 		if (a->array[0] > a->array[1])
-// 			sn(a, TRUE);
-// 	}
-// }
+	moves_b = 0;
+	while (b->length > 0)
+	{
+		i = 0;
+		moves_b = get_bigger_pos(a, b->array[0]);
+		if (moves_b > (a->length / 2))
+			while (i++ < (a->length - moves_b))
+				rrn(a, TRUE);
+		else
+			while (i++ < moves_b)
+				rn(a, TRUE);
+		pn(b, a);
+		if (a->array[0] > a->array[1])
+			sn(a, TRUE);
+	}
+}
 
 static void put_on_top(t_stack * n, int number)
 {
@@ -66,19 +66,19 @@ static void put_on_top(t_stack * n, int number)
 	}
 }
 
-static int is_on_better(int number, t_moves * moves)
-{
-	int i;
+// static int is_on_better(int number, t_moves * moves)
+// {
+// 	int i;
 
-	i = 0;
-	while (i < moves->better_len)
-	{
-		if (moves->better[i] == number)
-			return (TRUE);
-		i++;
-	}
-	return (FALSE);
-}
+// 	i = 0;
+// 	while (i < moves->better_len)
+// 	{
+// 		if (moves->better[i] == number)
+// 			return (TRUE);
+// 		i++;
+// 	}
+// 	return (FALSE);
+// }
 
 // int * ft_find_lis(int * array, int len, int * lis_len)
 // {
@@ -133,21 +133,22 @@ void push_swap(t_stack * a, t_stack * b)
 	// 	else
 	// 		pn(a, b);
 	// }
-	while (b->length > 0)
+	while (a->length > 0)
 	{
 		moves = calc_moves(a, b, a->array[0]);
 		i = 0;
-		while (++i < b->length)
+		while (++i < a->length)
 		{
-			current_moves = calc_moves(b, a, b->array[i]);
+			current_moves = calc_moves(a, b, b->array[i]);
 			if (moves.total > current_moves.total)
 				moves = current_moves;
 		}
 		if (moves.reverse_a == moves.reverse_b)
-			rotate_two(b, a, &moves);
-		rotate_one(b, a, &moves);
-		pn(b, a);
+			rotate_two(a, b, &moves);
+		rotate_one(a, b, &moves);
+		pn(a, b);
 	}
-	// get_back(a, b);
-	// put_on_top(a, get_smaller(a));
+	order_last_three(a);
+	get_back(a, b);
+	put_on_top(a, get_smaller(a));
 }
