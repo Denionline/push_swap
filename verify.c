@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 21:30:56 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/13 23:17:55 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/14 14:32:18 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,23 @@ void error(t_stack * a, t_stack * b, char ** to_clean)
 	exit(1);
 }
 
+void is_overflow(t_stack * a, t_stack * b)
+{
+	size_t i;
+
+	i = 0;
+	while (i < a->len)
+	{
+		if (a->array[i] > ((size_t)INT_MAX) || a->array[i] > ((size_t)INT_MIN))
+			error(a, b, NULL);
+		i++;
+	}
+}
+
 void is_there_duplicate(t_stack * a, t_stack * b, size_t * array, int length)
 {
-	int i;
-	int j;
+	int	   i;
+	int	   j;
 	size_t number;
 
 	i = 0;

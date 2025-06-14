@@ -6,12 +6,12 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"args": [
-				"2147483647 2 4 7"
+				"2147483648 2 4 7"
 			],
 			"stopAtEntry": false,
 			"externalConsole": false,
-			"cwd": "/home/dximenes/x/m2/push_swap",
-			"program": "/home/dximenes/x/m2/push_swap/build/Debug/outDebug",
+			"cwd": "${workspaceFolder}",
+			"program": "${workspaceFolder}/build/Debug/outDebug",
 			"MIMode": "gdb",
 			"miDebuggerPath": "gdb",
 			"setupCommands": [

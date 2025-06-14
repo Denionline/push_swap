@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 17:50:14 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/13 23:16:56 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/14 14:03:31 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,6 @@ void	parse(t_stack **a, t_stack **b, char **args, int length)
 		free(values[i++]);
 	}
 	free(values);
+	is_overflow(*a, *b);
 	is_there_duplicate(*a, *b, (*a)->array, (*a)->len);
 }

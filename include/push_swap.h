@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:38:54 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/13 23:25:47 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/14 14:30:58 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define PUSH_SWAP_H
 
 #include "libft/include/libft.h"
+#include <limits.h>
 
 #define TRUE 1
 #define FALSE 0
@@ -68,6 +69,7 @@ void ft_find_lis_sequence(size_t * array, size_t len, t_moves * moves);
 void check_args(t_stack * a, t_stack * b, char ** args);
 void error(t_stack * a, t_stack * b, char ** to_clean);
 void is_there_duplicate(t_stack * a, t_stack * b, size_t * array, int length);
+void is_overflow(t_stack * a, t_stack * b);
 
 // get_number.c
 size_t get_bigger(t_stack * n);
