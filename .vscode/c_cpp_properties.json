@@ -1,18 +1,19 @@
 {
-  "configurations": [
-    {
-      "name": "linux-clang-x64",
-      "includePath": [
-        "${workspaceFolder}/**",
-        "${workspaceFolder}/include",
-        "${workspaceFolder}/include/libft"
-      ],
-      "compilerPath": "/usr/bin/cc",
-      "cStandard": "${default}",
-      "cppStandard": "${default}",
-      "intelliSenseMode": "linux-clang-x64",
-      "compilerArgs": []
-    }
-  ],
-  "version": 4
+	"configurations": [
+		{
+			"name": "linux-clang-x64",
+			"includePath": [
+				"${workspaceFolder}/**",
+				"${workspaceFolder}/include",
+				"${workspaceFolder}/include/libft",
+				"${workspaceFolder}/include/get_next_line"
+			],
+			"compilerPath": "/usr/bin/cc",
+			"cStandard": "${default}",
+			"cppStandard": "${default}",
+			"intelliSenseMode": "linux-clang-x64",
+			"compilerArgs": []
+		}
+	],
+	"version": 4
 }

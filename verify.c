@@ -6,31 +6,40 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 21:30:56 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/17 09:29:58 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/17 19:26:03 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-void error(t_stack * a, t_stack * b, char ** to_clean)
+void	error(t_stack *a, t_stack *b, char **to_clean)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while (to_clean && to_clean[i])
-		free(to_clean[i++]);
-	free(to_clean);
-	free(a->array);
-	free(a);
-	free(b->array);
-	free(b);
+	if (to_clean)
+	{
+		while (to_clean[i])
+			free(to_clean[i++]);
+		free(to_clean);
+	}
+	if (a)
+	{
+		free(a->array);
+		free(a);
+	}
+	if (b)
+	{
+		free(b->array);
+		free(b);
+	}
 	ft_putendl_fd("Error", 1);
 	exit(1);
 }
 
-void is_exceding_limits(t_stack * a, t_stack * b, long * array, int len)
+void	is_exceding_limits(t_stack *a, t_stack *b, long *array, int len)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < len)
@@ -43,11 +52,11 @@ void is_exceding_limits(t_stack * a, t_stack * b, long * array, int len)
 	}
 }
 
-void is_there_duplicate(t_stack * a, t_stack * b, long * array, int length)
+void	is_there_duplicate(t_stack *a, t_stack *b, long *array, int length)
 {
-	int	 i;
-	int	 j;
-	long number;
+	int		i;
+	int		j;
+	long	number;
 
 	i = 0;
 	while (i < length)
@@ -61,18 +70,18 @@ void is_there_duplicate(t_stack * a, t_stack * b, long * array, int length)
 	}
 }
 
-void check_args(t_stack * a, t_stack * b, char ** args)
+void	check_args(t_stack *a, t_stack *b, char **args)
 {
-	int sig;
-	int i;
-	int j;
+	int	sig;
+	int	i;
+	int	j;
 
-	i = 0;
-	while (args[i])
+	i = -1;
+	while (args[++i])
 	{
 		sig = 0;
-		j = 0;
-		while (args[i][j])
+		j = -1;
+		while (args[i][++j])
 		{
 			if (!ft_isdigit(args[i][j]))
 			{
@@ -83,8 +92,8 @@ void check_args(t_stack * a, t_stack * b, char ** args)
 				if (sig > 1)
 					error(a, b, args);
 			}
-			j++;
 		}
-		i++;
+		if (j == sig)
+			error(a, b, args);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 13:44:06 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/13 20:31:30 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/17 20:30:33 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,17 @@ void rrn(t_stack * n, int toprint)
 	int tomove;
 	int i;
 
-	tomove = n->array[n->len - 1];
-	i = n->len - 1;
-	while (i > 0)
+	if (n && n->len > 0)
 	{
-		n->array[i] = n->array[i - 1];
-		i--;
+		tomove = n->array[n->len - 1];
+		i = n->len - 1;
+		while (i > 0)
+		{
+			n->array[i] = n->array[i - 1];
+			i--;
+		}
+		n->array[0] = tomove;
 	}
-	n->array[0] = tomove;
 	if (toprint)
 	{
 		ft_putstr_fd("rr", 1);

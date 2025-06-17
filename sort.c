@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:27:10 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/17 10:56:16 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/17 20:34:53 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	fh_push_no_sequence(t_stack *a, t_stack *b, t_moves *moves)
 		if (fh_is_on_better(a->array[0], moves))
 			rn(a, TRUE);
 		else
-			pn(a, b);
+			pn(a, b, TRUE);
 	}
 }
 
@@ -77,7 +77,7 @@ void	sort(t_stack *a, t_stack *b)
 		if (moves.reverse_a == moves.reverse_b)
 			rotate_two(a, b, &moves);
 		rotate_one(a, b, &moves);
-		pn(b, a);
+		pn(b, a, TRUE);
 	}
 	fh_push_to_top(a, get_smaller(a));
 }

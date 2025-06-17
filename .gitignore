@@ -1,4 +1,5 @@
 /include/libft
+/include/get_next_line
 .vscode/
 build/
 .vscode/launch.json
@@ -6,3 +7,4 @@ build/
 *.o
 binary.a
 push_swap
+checker

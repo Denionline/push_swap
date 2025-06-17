@@ -34,28 +34,31 @@ GNL_URL		= https://github.com/Denionline/get_next_line.git
 #                                    Path's                                    #
 # **************************************************************************** #
 
-INC			= include
-LIBFT_PATH	= $(INC)/libft/
-GNL_PATH	= $(INC)/get_next_line/
+BF				= .bonus
+INC				= include
+LIBFT_PATH		= $(INC)/libft/
+GNL_PATH		= $(INC)/get_next_line/
 
-FILES		+= push_swap
-FILES		+= sort
-FILES		+= sn
-FILES		+= ss
-FILES		+= pn
-FILES		+= rn
-FILES		+= rr
-FILES		+= rrn
-FILES		+= rrr
-FILES		+= parse
-FILES		+= verify
-FILES		+= rotates
-FILES		+= calc_moves
-FILES		+= get_number
-FILES		+= find_lis_sequence
+FILES			+= sort
+FILES			+= sn
+FILES			+= ss
+FILES			+= pn
+FILES			+= rn
+FILES			+= rr
+FILES			+= rrn
+FILES			+= rrr
+FILES			+= parse
+FILES			+= verify
+FILES			+= rotates
+FILES			+= calc_moves
+FILES			+= get_number
+FILES			+= find_lis_sequence
 
-SRCS		= $(addprefix ./, $(addsuffix .c, $(FILES)))
-OBJS		= $(addprefix ./, $(addsuffix .o, $(FILES)))
+SRCS			= $(addprefix ./, $(addsuffix .c, $(FILES)))
+OBJS			= $(addprefix ./, $(addsuffix .o, $(FILES)))
+
+PUSH_SWAP_FILE	= push_swap.c
+CHECKER_FILE	= checker.c
 
 # **************************************************************************** #
 #                                  Compiler                                    #
@@ -71,43 +74,42 @@ MAKE		= make --no-print-directory
 # **************************************************************************** #
 
 all: verify_libft $(LIBFT) $(ARQUIVE)
-	@echo "✅ Tudo está atualizado!"
+	@printf "\n$(C_GREEN)Program is ready :D$(C_STD)\n"
 
 $(LIBFT):
 	@$(MAKE) -C $(LIBFT_PATH)
 
 $(ARQUIVE): $(OBJS) $(LIBFT)
 	@$(AR) $(ARQUIVE) $(OBJS)
-	@$(CC) $(CFLAGS) $(ARQUIVE) $(LIBFT) -o $(PUSH_SWAP)
-	@printf "\n$(C_GREEN)Success to created the executable $(C_STD)$(PUSH_SWAP)\n\n"
+	@$(CC) $(CFLAGS) $(PUSH_SWAP_FILE) $(ARQUIVE) $(LIBFT) -I $(INC) -o $(PUSH_SWAP)
+	@printf "\n$(C_GREEN)Success to created $(C_STD)$(PUSH_SWAP)\n\n"
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -I $(INC) -c $< -o $@
 	@printf "Compiling $(C_YELLOW)$<$(C_STD)...\n"
 
-bonus: all verify_gnl $(GNL)
-	@$(AR) $(ARQUIVE) $()
+bonus: verify_gnl $(GNL) $(BF) all
+	@$(CC) $(CFLAGS) $(CHECKER_FILE) $(ARQUIVE) $(LIBFT) $(GNL) -I $(INC) -o $(CHECKER)
+
+$(BF):
+	@touch $(BF)
+
+$(GNL):
+	@$(MAKE) -C $(GNL_PATH)
 
 clean:
 	@rm -rf $(OBJS)
 
 fclean: clean
-	@rm -rf $(ARQUIVE) $(PUSH_SWAP)
+	@rm -rf $(ARQUIVE) $(PUSH_SWAP) $(CHECKER)
 
 re: fclean all
 
-
 # libft processes
 verify_libft:
-	@if test1 ! -d "$(LIBFT_PATH)"; then $(MAKE) get_libft; \
-		else printf "\n$(C_GREEN)Libft folder exist!$(C_STD)\n\n"; fi
-	@$(MAKE) modules_libft
-
-modules_libft:
-	@printf "$(C_BLUE)Updating repository...$(C_STD)\n"
-	@git submodule init
-	@git submodule update --recursive --remote
-	@printf "$(C_BLUE)Repository updated!$(C_STD)\n\n"
+	@if test ! -d "$(LIBFT_PATH)"; then $(MAKE) get_libft; \
+		else printf "libft: $(C_GREEN)✅$(C_STD)\n"; fi
+	@$(MAKE) update_modules
 
 get_libft:
 	@echo "Cloning Libft"
@@ -116,17 +118,18 @@ get_libft:
 
 # get_next_line processes
 verify_gnl:
-	@if test2 ! -d "$(GNL_PATH)"; then $(MAKE) get_gnl; \
-		else printf "\n$(C_GREEN)get_next_line folder exist!$(C_STD)\n\n"; fi
-	@$(MAKE) modules_gnl
+	@if test ! -d "$(GNL_PATH)"; then $(MAKE) get_gnl; \
+		else printf "get_next_line: $(C_GREEN)✅$(C_STD)\n"; fi
+	@$(MAKE) update_modules
 
-modules_gnl:
+get_gnl:
+	@printf "Cloning get_next_line\n"
+	@git clone $(GNL_URL) $(GNL_PATH)
+	@printf "\n$(C_GREEN)get_next_line$(C_STD) successfully downloaded\n"
+
+#general processes
+update_modules:
 	@git submodule init
 	@git submodule update --recursive --remote
 # @printf "$(C_BLUE)Updating repository...$(C_STD)\n"
 # @printf "$(C_BLUE)Repository updated!$(C_STD)\n\n"
-
-get_gnl:
-	@echo "Cloning get_next_line"
-	@git clone $(GNL_URL) $(GNL_PATH)
-	@echo "get_next_line clone successfully downloaded"

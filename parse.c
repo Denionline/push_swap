@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 17:50:14 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/17 09:52:25 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/17 21:45:54 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,12 @@ static char ** fh_getarray(char ** values, int len)
 
 void parse(t_stack ** a, t_stack ** b, char ** args, int length)
 {
-	char ** values;
+	char	**values;
 	int		size;
 	int		i;
 
+	if (!args[1][0] || length < 2)
+		error(NULL, NULL, NULL);
 	values = fh_getarray(args, length);
 	if (!values)
 		return (free(values));

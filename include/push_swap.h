@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:38:54 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/17 09:29:44 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/17 20:31:14 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ typedef struct s_moves
 
 typedef struct s_stack
 {
-	char *	 name;
-	long * array;
-	long	 len;
+	char	*name;
+	long	*array;
+	long	len;
 } t_stack;
 
 // push_swap.c
@@ -45,13 +45,13 @@ void rotate_one(t_stack * a, t_stack * b, t_moves * moves);
 void rotate_two(t_stack * a, t_stack * b, t_moves * moves);
 
 // operations
-void pn(t_stack * from, t_stack * to);
+void pn(t_stack * from, t_stack * to, int toprint);
 void sn(t_stack * n, int toprint);
 void rn(t_stack * n, int toprint);
 void rrn(t_stack * n, int toprint);
-void ss(t_stack * a, t_stack * b);
-void rr(t_stack * a, t_stack * b);
-void rrr(t_stack * a, t_stack * b);
+void ss(t_stack * a, t_stack * b, int toprint);
+void rr(t_stack * a, t_stack * b, int toprint);
+void rrr(t_stack * a, t_stack * b, int toprint);
 
 // sort.c
 void sort(t_stack * a, t_stack * b);
@@ -75,4 +75,5 @@ void is_exceding_limits(t_stack * a, t_stack * b, long * array, int len);
 long get_bigger(t_stack * n);
 long get_smaller(t_stack * n);
 long get_pos(t_stack * n, long number);
+
 #endif
