@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:28:20 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/17 23:25:51 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/18 00:29:33 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ static void	fh_get_sequence(long *array, long *b_p, long *b_idx, int pos)
 	}
 }
 
-static long	*fh_get_lis(long * arr, long * b_p, long * b_idx, int max, int idx)
+static long	*fh_get_lis(long *arr, long *b_p, long *b_idx, int max, int idx)
 {
 	long	*lis;
-	int	k;
+	int		k;
 
 	lis = malloc(max * sizeof(long));
 	k = max - 1;
@@ -43,7 +43,7 @@ static long	*fh_get_lis(long * arr, long * b_p, long * b_idx, int max, int idx)
 	return (free(b_idx), free(b_p), lis);
 }
 
-static long	fh_get_best_idx(long * arr, long * b_p, long * b_idx, long * mx, int ln)
+static long	fh_get_best_idx(long *arr, long *b_p, long *b_idx, long *mx, int ln)
 {
 	int	mx_idx;
 	int	i;
@@ -65,7 +65,7 @@ static long	fh_get_best_idx(long * arr, long * b_p, long * b_idx, long * mx, int
 	return (mx_idx);
 }
 
-void	ft_find_lis_sequence(long * array, long len, t_moves *moves)
+void	ft_find_lis_sequence(long *array, long len, t_moves *moves)
 {
 	long	*best_poss;
 	long	*best_idx;

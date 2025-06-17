@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 11:05:34 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/17 23:44:12 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/18 00:30:02 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ static void	get_commands(t_stack *a, t_stack *b)
 
 int	main(int argc, char *argv[])
 {
-	t_stack *a;
-	t_stack *b;
+	t_stack	*a;
+	t_stack	*b;
 
 	parse(&a, &b, argv, argc);
 	get_commands(a, b);

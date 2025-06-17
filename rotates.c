@@ -6,13 +6,13 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 17:20:05 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/17 23:25:51 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/18 00:38:25 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void rotate_one(t_stack *a, t_stack *b, t_moves *moves)
+void	rotate_one(t_stack *a, t_stack *b, t_moves *moves)
 {
 	int	i;
 
@@ -35,7 +35,8 @@ void rotate_one(t_stack *a, t_stack *b, t_moves *moves)
 		i++;
 	}
 }
-void rotate_two(t_stack *a, t_stack *b, t_moves *moves)
+
+void	rotate_two(t_stack *a, t_stack *b, t_moves *moves)
 {
 	int	amount;
 	int	i;

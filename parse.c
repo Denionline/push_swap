@@ -6,15 +6,15 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 17:50:14 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/17 23:25:51 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/18 00:28:31 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int fh_get_len(char ** args)
+static int	fh_get_len(char **args)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (args[len])
@@ -22,7 +22,7 @@ static int fh_get_len(char ** args)
 	return (len);
 }
 
-static void fh_initstack(t_stack ** a, t_stack ** b, int size)
+static void	fh_initstack(t_stack **a, t_stack **b, int size)
 {
 	(*a) = malloc(sizeof(t_stack));
 	(*b) = malloc(sizeof(t_stack));
@@ -39,9 +39,9 @@ static void fh_initstack(t_stack ** a, t_stack ** b, int size)
 	(*a)->len = size;
 }
 
-static char ** fh_getarray(char ** values, int len)
+static char	**fh_getarray(char **values, int len)
 {
-	char ** array;
+	char	**array;
 	int		i;
 
 	i = 0;
@@ -56,7 +56,7 @@ static char ** fh_getarray(char ** values, int len)
 	return (array);
 }
 
-void parse(t_stack ** a, t_stack ** b, char ** args, int length)
+void	parse(t_stack **a, t_stack **b, char **args, int length)
 {
 	char	**values;
 	int		size;

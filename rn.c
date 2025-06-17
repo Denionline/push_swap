@@ -6,19 +6,19 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 12:17:20 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/17 23:25:51 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/18 00:38:13 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void rn(t_stack * n, int toprint)
+void	rn(t_stack *n, int toprint)
 {
-	long tomove;
-	long i;
+	long	tomove;
+	long	i;
 
 	if (n->len <= 1)
-		return;
+		return ;
 	tomove = n->array[0];
 	i = 0;
 	while (i < n->len - 1)

@@ -6,13 +6,13 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 12:36:21 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/17 23:25:51 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/18 00:34:58 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static long get_new_pos(t_stack * b, long number)
+static long	get_new_pos(t_stack *b, long number)
 {
 	long	bigger;
 	long	pos;
@@ -28,7 +28,7 @@ static long get_new_pos(t_stack * b, long number)
 	return (get_pos(b, bigger) + (bigger < number));
 }
 
-t_moves calc_moves(t_stack * a, t_stack * b, long number)
+t_moves	calc_moves(t_stack *a, t_stack *b, long number)
 {
 	t_moves	moves;
 	long	moves_a;

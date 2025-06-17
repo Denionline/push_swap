@@ -6,7 +6,7 @@
 #    By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/17 23:46:38 by dximenes          #+#    #+#              #
-#    Updated: 2025/06/17 23:46:40 by dximenes         ###   ########.fr        #
+#    Updated: 2025/06/18 00:22:36 by dximenes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,9 +28,9 @@ C_WHITE = \033[0;97m
 #                                    Names                                     #
 # **************************************************************************** #
 
-PUSH_SWAP	= push_swap
-CHECKER		= checker
-ARQUIVE		= binary.a
+PUSH_SWAP		= push_swap
+CHECKER			= checker
+ARQUIVE			= binary.a
 
 # **************************************************************************** #
 #                                    Path's                                    #
@@ -56,43 +56,21 @@ FILES			+= calc_moves
 FILES			+= get_number
 FILES			+= find_lis_sequence
 
-LIBFT_FILES		+= ft_isalnum
-LIBFT_FILES		+= ft_isalpha
-LIBFT_FILES		+= ft_isprint
 LIBFT_FILES		+= ft_isdigit
-LIBFT_FILES		+= ft_isascii
-LIBFT_FILES		+= ft_toupper
-LIBFT_FILES		+= ft_tolower
 LIBFT_FILES		+= ft_atoi
-LIBFT_FILES		+= ft_strncmp
-LIBFT_FILES		+= ft_memcmp
 LIBFT_FILES		+= ft_strlen
 LIBFT_FILES		+= ft_strlcpy
-LIBFT_FILES		+= ft_strlcat
-LIBFT_FILES		+= ft_strlcpy
 LIBFT_FILES		+= ft_substr
-LIBFT_FILES		+= ft_strtrim
 LIBFT_FILES		+= ft_strchr
-LIBFT_FILES		+= ft_strnstr
-LIBFT_FILES		+= ft_strmapi
-LIBFT_FILES		+= ft_strjoin
 LIBFT_FILES		+= ft_strdup
-LIBFT_FILES		+= ft_strnstr
-LIBFT_FILES		+= ft_itoa
 LIBFT_FILES		+= ft_split
-LIBFT_FILES		+= ft_strrchr
-LIBFT_FILES		+= ft_striteri
-LIBFT_FILES		+= ft_memcpy
-LIBFT_FILES		+= ft_memmove
 LIBFT_FILES		+= ft_calloc
 LIBFT_FILES		+= ft_memcpy
 LIBFT_FILES		+= ft_bzero
 LIBFT_FILES		+= ft_putchar_fd
 LIBFT_FILES		+= ft_putstr_fd
 LIBFT_FILES		+= ft_putendl_fd
-LIBFT_FILES		+= ft_putnbr_fd
 LIBFT_FILES		+= ft_memset
-LIBFT_FILES		+= ft_memchr
 
 GNL_FILES		+= get_next_line
 GNL_FILES		+= get_next_line_utils
@@ -111,6 +89,7 @@ CC			= cc
 CFLAGS		= -Wall -Werror -Wextra
 AR			= ar rcs
 MAKE		= make --no-print-directory
+RM			= rm -rf
 
 # **************************************************************************** #
 #                                    Comands                                   #
@@ -136,9 +115,9 @@ $(BF):
 	@printf "$(C_GREEN)Success to created $(C_STD)$(CHECKER)\n"
 
 clean:
-	@rm -rf $(OBJS)
+	@$(RM) $(OBJS)
 
 fclean: clean
-	@rm -rf $(ARQUIVE) $(PUSH_SWAP) $(CHECKER) $(BF)
+	@$(RM) $(ARQUIVE) $(PUSH_SWAP) $(CHECKER) $(BF)
 
 re: fclean all
