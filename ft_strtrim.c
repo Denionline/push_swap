@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rrn.c                                              :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 13:44:06 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/17 23:25:51 by dximenes         ###   ########.fr       */
+/*   Created: 2025/04/08 14:37:29 by dximenes          #+#    #+#             */
+/*   Updated: 2025/06/17 23:25:05 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void rrn(t_stack * n, int toprint)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	int tomove;
-	int i;
+	size_t	ls1;
+	char	*end;
 
-	if (n && n->len > 0)
-	{
-		tomove = n->array[n->len - 1];
-		i = n->len - 1;
-		while (i > 0)
-		{
-			n->array[i] = n->array[i - 1];
-			i--;
-		}
-		n->array[0] = tomove;
-	}
-	if (toprint)
-	{
-		ft_putstr_fd("rr", 1);
-		ft_putendl_fd(n->name, 1);
-	}
+	if (!s1 || !set)
+		return (ft_strdup(""));
+	ls1 = ft_strlen((char *)s1);
+	end = (char *) s1 + ls1 - (*s1 != '\0');
+	while (ft_strchr((char *)set, *s1))
+		s1++;
+	if (s1 >= end)
+		return (ft_strdup(""));
+	while (ft_strchr((char *)set, *end))
+		end--;
+	return (ft_substr((char *)s1, 0, (size_t)(end - s1 + 1)));
 }

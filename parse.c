@@ -6,11 +6,11 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 17:50:14 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/17 21:45:54 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/17 23:25:51 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/push_swap.h"
+#include "push_swap.h"
 
 static int fh_get_len(char ** args)
 {

@@ -6,11 +6,11 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 15:12:55 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/17 09:29:44 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/17 23:25:51 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/push_swap.h"
+#include "push_swap.h"
 
 long get_pos(t_stack * n, long number)
 {

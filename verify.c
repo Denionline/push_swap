@@ -6,11 +6,11 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 21:30:56 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/17 19:26:03 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/17 23:25:51 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/push_swap.h"
+#include "push_swap.h"
 
 void	error(t_stack *a, t_stack *b, char **to_clean)
 {

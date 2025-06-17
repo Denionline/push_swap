@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rrn.c                                              :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 13:44:06 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/17 23:25:51 by dximenes         ###   ########.fr       */
+/*   Created: 2025/04/07 20:34:13 by dximenes          #+#    #+#             */
+/*   Updated: 2025/06/17 23:25:05 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void rrn(t_stack * n, int toprint)
+char	*ft_strrchr(const char *s, int c)
 {
-	int tomove;
-	int i;
+	char	*res;
 
-	if (n && n->len > 0)
+	res = NULL;
+	while (*s)
 	{
-		tomove = n->array[n->len - 1];
-		i = n->len - 1;
-		while (i > 0)
-		{
-			n->array[i] = n->array[i - 1];
-			i--;
-		}
-		n->array[0] = tomove;
+		if (*s == (char)c)
+			res = (char *)s;
+		s++;
 	}
-	if (toprint)
-	{
-		ft_putstr_fd("rr", 1);
-		ft_putendl_fd(n->name, 1);
-	}
+	if ((char)c == '\0')
+		return ((char *)s);
+	return (res);
 }

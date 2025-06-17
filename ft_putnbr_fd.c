@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rrn.c                                              :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 13:44:06 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/17 23:25:51 by dximenes         ###   ########.fr       */
+/*   Created: 2025/04/09 14:56:18 by dximenes          #+#    #+#             */
+/*   Updated: 2025/06/17 23:25:05 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void rrn(t_stack * n, int toprint)
+void	ft_putnbr_fd(int n, int fd)
 {
-	int tomove;
-	int i;
+	long int	nlong;
 
-	if (n && n->len > 0)
+	nlong = n;
+	if (nlong < 0)
 	{
-		tomove = n->array[n->len - 1];
-		i = n->len - 1;
-		while (i > 0)
-		{
-			n->array[i] = n->array[i - 1];
-			i--;
-		}
-		n->array[0] = tomove;
+		ft_putchar_fd('-', fd);
+		nlong *= -1;
 	}
-	if (toprint)
-	{
-		ft_putstr_fd("rr", 1);
-		ft_putendl_fd(n->name, 1);
-	}
+	if (nlong >= 10)
+		ft_putnbr_fd((int)(nlong / 10), fd);
+	ft_putchar_fd((char)(nlong % 10 + '0'), fd);
 }

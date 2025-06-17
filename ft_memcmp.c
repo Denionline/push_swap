@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rrn.c                                              :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 13:44:06 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/17 23:25:51 by dximenes         ###   ########.fr       */
+/*   Created: 2025/04/07 22:36:45 by dximenes          #+#    #+#             */
+/*   Updated: 2025/06/17 23:25:05 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void rrn(t_stack * n, int toprint)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int tomove;
-	int i;
+	unsigned char	*s_s1;
+	unsigned char	*s_s2;
+	size_t			i;
 
-	if (n && n->len > 0)
+	s_s1 = (unsigned char *)s1;
+	s_s2 = (unsigned char *)s2;
+	i = 0;
+	while (i < n)
 	{
-		tomove = n->array[n->len - 1];
-		i = n->len - 1;
-		while (i > 0)
-		{
-			n->array[i] = n->array[i - 1];
-			i--;
-		}
-		n->array[0] = tomove;
+		if (s_s1[i] != s_s2[i])
+			return (s_s1[i] - s_s2[i]);
+		i++;
 	}
-	if (toprint)
-	{
-		ft_putstr_fd("rr", 1);
-		ft_putendl_fd(n->name, 1);
-	}
+	return (0);
 }

@@ -18,26 +18,16 @@ C_WHITE = \033[0;97m
 
 PUSH_SWAP	= push_swap
 CHECKER		= checker
-
 ARQUIVE		= binary.a
-LIBFT		= $(LIBFT_PATH)libft.a
-GNL			= $(GNL_PATH)get_next_line.a
-
-# **************************************************************************** #
-#                                    Git                                       #
-# **************************************************************************** #
-
-LIBFT_URL	= https://github.com/Denionline/Libft.git
-GNL_URL		= https://github.com/Denionline/get_next_line.git
 
 # **************************************************************************** #
 #                                    Path's                                    #
 # **************************************************************************** #
 
+PUSH_SWAP_FILE	= push_swap.c
+CHECKER_FILE	= checker.c
+
 BF				= .bonus
-INC				= include
-LIBFT_PATH		= $(INC)/libft/
-GNL_PATH		= $(INC)/get_next_line/
 
 FILES			+= sort
 FILES			+= sn
@@ -54,11 +44,52 @@ FILES			+= calc_moves
 FILES			+= get_number
 FILES			+= find_lis_sequence
 
+LIBFT_FILES		+= ft_isalnum
+LIBFT_FILES		+= ft_isalpha
+LIBFT_FILES		+= ft_isprint
+LIBFT_FILES		+= ft_isdigit
+LIBFT_FILES		+= ft_isascii
+LIBFT_FILES		+= ft_toupper
+LIBFT_FILES		+= ft_tolower
+LIBFT_FILES		+= ft_atoi
+LIBFT_FILES		+= ft_strncmp
+LIBFT_FILES		+= ft_memcmp
+LIBFT_FILES		+= ft_strlen
+LIBFT_FILES		+= ft_strlcpy
+LIBFT_FILES		+= ft_strlcat
+LIBFT_FILES		+= ft_strlcpy
+LIBFT_FILES		+= ft_substr
+LIBFT_FILES		+= ft_strtrim
+LIBFT_FILES		+= ft_strchr
+LIBFT_FILES		+= ft_strnstr
+LIBFT_FILES		+= ft_strmapi
+LIBFT_FILES		+= ft_strjoin
+LIBFT_FILES		+= ft_strdup
+LIBFT_FILES		+= ft_strnstr
+LIBFT_FILES		+= ft_itoa
+LIBFT_FILES		+= ft_split
+LIBFT_FILES		+= ft_strrchr
+LIBFT_FILES		+= ft_striteri
+LIBFT_FILES		+= ft_memcpy
+LIBFT_FILES		+= ft_memmove
+LIBFT_FILES		+= ft_calloc
+LIBFT_FILES		+= ft_memcpy
+LIBFT_FILES		+= ft_bzero
+LIBFT_FILES		+= ft_putchar_fd
+LIBFT_FILES		+= ft_putstr_fd
+LIBFT_FILES		+= ft_putendl_fd
+LIBFT_FILES		+= ft_putnbr_fd
+LIBFT_FILES		+= ft_memset
+LIBFT_FILES		+= ft_memchr
+
+GNL_FILES		+= get_next_line
+GNL_FILES		+= get_next_line_utils
+
+FILES			+= $(LIBFT_FILES)
+FILES			+= $(GNL_FILES)
+
 SRCS			= $(addprefix ./, $(addsuffix .c, $(FILES)))
 OBJS			= $(addprefix ./, $(addsuffix .o, $(FILES)))
-
-PUSH_SWAP_FILE	= push_swap.c
-CHECKER_FILE	= checker.c
 
 # **************************************************************************** #
 #                                  Compiler                                    #
@@ -73,63 +104,29 @@ MAKE		= make --no-print-directory
 #                                    Comands                                   #
 # **************************************************************************** #
 
-all: verify_libft $(LIBFT) $(ARQUIVE)
-	@printf "\n$(C_GREEN)Program is ready :D$(C_STD)\n"
+all: $(ARQUIVE)
+	@printf "$(C_MAGENTA)Program is ready :D$(C_STD)\n"
 
-$(LIBFT):
-	@$(MAKE) -C $(LIBFT_PATH)
-
-$(ARQUIVE): $(OBJS) $(LIBFT)
-	@$(AR) $(ARQUIVE) $(OBJS)
-	@$(CC) $(CFLAGS) $(PUSH_SWAP_FILE) $(ARQUIVE) $(LIBFT) -I $(INC) -o $(PUSH_SWAP)
-	@printf "\n$(C_GREEN)Success to created $(C_STD)$(PUSH_SWAP)\n\n"
+$(ARQUIVE): $(OBJS)
+	@$(AR) $(ARQUIVE) $(OBJS) $(LIBFT_OBJS)
+	@$(CC) $(CFLAGS) $(PUSH_SWAP_FILE) $(ARQUIVE) -o $(PUSH_SWAP)
+	@printf "$(C_GREEN)Success to created $(C_STD)$(PUSH_SWAP)\n"
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -I $(INC) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 	@printf "Compiling $(C_YELLOW)$<$(C_STD)...\n"
 
-bonus: verify_gnl $(GNL) $(BF) all
-	@$(CC) $(CFLAGS) $(CHECKER_FILE) $(ARQUIVE) $(LIBFT) $(GNL) -I $(INC) -o $(CHECKER)
+bonus: $(BF) all
+	@$(CC) $(CFLAGS) $(CHECKER_FILE) $(ARQUIVE) -o $(CHECKER)
 
 $(BF):
 	@touch $(BF)
-
-$(GNL):
-	@$(MAKE) -C $(GNL_PATH)
+	@printf "$(C_GREEN)Success to created $(C_STD)$(CHECKER)\n"
 
 clean:
 	@rm -rf $(OBJS)
 
 fclean: clean
-	@rm -rf $(ARQUIVE) $(PUSH_SWAP) $(CHECKER)
+	@rm -rf $(ARQUIVE) $(PUSH_SWAP) $(CHECKER) $(BF)
 
 re: fclean all
-
-# libft processes
-verify_libft:
-	@if test ! -d "$(LIBFT_PATH)"; then $(MAKE) get_libft; \
-		else printf "libft: $(C_GREEN)✅$(C_STD)\n"; fi
-	@$(MAKE) update_modules
-
-get_libft:
-	@echo "Cloning Libft"
-	@git clone $(LIBFT_URL) $(LIBFT_PATH)
-	@echo "Libft clone successfully downloaded"
-
-# get_next_line processes
-verify_gnl:
-	@if test ! -d "$(GNL_PATH)"; then $(MAKE) get_gnl; \
-		else printf "get_next_line: $(C_GREEN)✅$(C_STD)\n"; fi
-	@$(MAKE) update_modules
-
-get_gnl:
-	@printf "Cloning get_next_line\n"
-	@git clone $(GNL_URL) $(GNL_PATH)
-	@printf "\n$(C_GREEN)get_next_line$(C_STD) successfully downloaded\n"
-
-#general processes
-update_modules:
-	@git submodule init
-	@git submodule update --recursive --remote
-# @printf "$(C_BLUE)Updating repository...$(C_STD)\n"
-# @printf "$(C_BLUE)Repository updated!$(C_STD)\n\n"

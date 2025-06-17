@@ -1,36 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rrn.c                                              :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 13:44:06 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/17 23:25:51 by dximenes         ###   ########.fr       */
+/*   Created: 2025/04/07 22:59:10 by dximenes          #+#    #+#             */
+/*   Updated: 2025/06/17 23:25:05 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void rrn(t_stack * n, int toprint)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	int tomove;
-	int i;
+	size_t	lsize;
 
-	if (n && n->len > 0)
+	if (big == NULL && len == 0)
+		return (0);
+	lsize = ft_strlen(little);
+	if (lsize > ft_strlen(big))
+		return (NULL);
+	if (lsize == 0)
+		return ((char *)big);
+	while (*big && len)
 	{
-		tomove = n->array[n->len - 1];
-		i = n->len - 1;
-		while (i > 0)
-		{
-			n->array[i] = n->array[i - 1];
-			i--;
-		}
-		n->array[0] = tomove;
+		if (!ft_strncmp(big, little, lsize) && len >= lsize)
+			return ((char *)big);
+		big++;
+		len--;
 	}
-	if (toprint)
-	{
-		ft_putstr_fd("rr", 1);
-		ft_putendl_fd(n->name, 1);
-	}
+	return (NULL);
 }

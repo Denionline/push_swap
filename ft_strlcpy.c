@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rrn.c                                              :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 13:44:06 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/17 23:25:51 by dximenes         ###   ########.fr       */
+/*   Created: 2025/04/06 11:51:39 by dximenes          #+#    #+#             */
+/*   Updated: 2025/06/17 23:25:05 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void rrn(t_stack * n, int toprint)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	int tomove;
-	int i;
+	size_t	lsrc;
+	size_t	lcopy;
+	char	*s_src;
 
-	if (n && n->len > 0)
+	s_src = (char *)src;
+	lsrc = ft_strlen(s_src);
+	if (lsrc >= size)
+		lcopy = size - 1;
+	else
+		lcopy = lsrc;
+	if (size > 0)
 	{
-		tomove = n->array[n->len - 1];
-		i = n->len - 1;
-		while (i > 0)
-		{
-			n->array[i] = n->array[i - 1];
-			i--;
-		}
-		n->array[0] = tomove;
+		ft_memcpy(dst, s_src, lcopy);
+		dst[lcopy] = '\0';
 	}
-	if (toprint)
-	{
-		ft_putstr_fd("rr", 1);
-		ft_putendl_fd(n->name, 1);
-	}
+	return (lsrc);
 }

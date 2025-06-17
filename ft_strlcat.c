@@ -1,36 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rrn.c                                              :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 13:44:06 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/17 23:25:51 by dximenes         ###   ########.fr       */
+/*   Created: 2025/04/07 18:11:15 by dximenes          #+#    #+#             */
+/*   Updated: 2025/06/17 23:25:05 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void rrn(t_stack * n, int toprint)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	int tomove;
-	int i;
+	size_t	i;
+	size_t	ldst;
+	size_t	lsrc;
+	char	*s_src;
 
-	if (n && n->len > 0)
+	if (size == 0 && dst == NULL)
+		return (0);
+	s_src = (char *)src;
+	ldst = 0;
+	lsrc = ft_strlen(s_src);
+	while (dst[ldst] && ldst < size)
+		ldst++;
+	if (ldst == size)
+		return (lsrc + ldst);
+	i = 0;
+	while (s_src[i] && ((ldst + i) + 1) < size)
 	{
-		tomove = n->array[n->len - 1];
-		i = n->len - 1;
-		while (i > 0)
-		{
-			n->array[i] = n->array[i - 1];
-			i--;
-		}
-		n->array[0] = tomove;
+		dst[ldst + i] = s_src[i];
+		i++;
 	}
-	if (toprint)
-	{
-		ft_putstr_fd("rr", 1);
-		ft_putendl_fd(n->name, 1);
-	}
+	dst[ldst + i] = '\0';
+	return (lsrc + ldst);
 }

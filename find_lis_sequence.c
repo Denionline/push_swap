@@ -6,11 +6,11 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:28:20 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/17 09:29:44 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/17 23:25:51 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/push_swap.h"
+#include "push_swap.h"
 
 static void	fh_get_sequence(long *array, long *b_p, long *b_idx, int pos)
 {

@@ -6,12 +6,11 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 11:05:34 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/17 21:42:28 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/17 23:44:12 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/push_swap.h"
-#include "include/get_next_line/include/get_next_line.h"
+#include "push_swap.h"
 
 static int	fh_is_sorted(t_stack *a, t_stack *b)
 {
@@ -58,6 +57,7 @@ static void	commands(t_stack *a, t_stack *b, t_stack *n, char *c)
 		return (rr(a, b, FALSE));
 	if (!n && c[0] == 'r' && c[1] == 'r' && c[2] == 'r' && c[3] == '\n')
 		return (rrr(a, b, FALSE));
+	free(c);
 	error(a, b, NULL);
 }
 
