@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 11:38:09 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/13 23:20:01 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/17 09:29:44 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void pn(t_stack * from, t_stack * to)
 {
-	size_t temp;
-	size_t i;
+	long temp;
+	long i;
 
 	if (from->len == 0)
 		return;

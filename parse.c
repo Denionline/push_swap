@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 17:50:14 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/13 23:56:52 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/17 09:52:25 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ static void fh_initstack(t_stack ** a, t_stack ** b, int size)
 	ft_memset(*b, 0, sizeof(**b));
 	if (!(*a) || !(*b))
 		return (free((*a)), free((*b)));
-	(*a)->array = ft_calloc(size, sizeof(size_t));
-	(*b)->array = ft_calloc(size, sizeof(size_t));
+	(*a)->array = ft_calloc(size, sizeof(long));
+	(*b)->array = ft_calloc(size, sizeof(long));
 	if (!(*a)->array || !(*b)->array)
 		return (free((*a)->array), free((*b)->array));
 	(*a)->name = "a";

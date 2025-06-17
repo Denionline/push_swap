@@ -6,13 +6,13 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:28:20 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/13 23:39:43 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/17 09:29:44 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-static void	fh_get_sequence(size_t *array, size_t *b_p, size_t *b_idx, int pos)
+static void	fh_get_sequence(long *array, long *b_p, long *b_idx, int pos)
 {
 	int	j;
 
@@ -28,12 +28,12 @@ static void	fh_get_sequence(size_t *array, size_t *b_p, size_t *b_idx, int pos)
 	}
 }
 
-static size_t	*fh_get_lis(size_t * arr, size_t * b_p, size_t * b_idx, int max, int idx)
+static long	*fh_get_lis(long * arr, long * b_p, long * b_idx, int max, int idx)
 {
-	size_t	*lis;
+	long	*lis;
 	int	k;
 
-	lis = malloc(max * sizeof(size_t));
+	lis = malloc(max * sizeof(long));
 	k = max - 1;
 	while (idx >= 0)
 	{
@@ -43,7 +43,7 @@ static size_t	*fh_get_lis(size_t * arr, size_t * b_p, size_t * b_idx, int max, i
 	return (free(b_idx), free(b_p), lis);
 }
 
-static size_t	fh_get_best_idx(size_t * arr, size_t * b_p, size_t * b_idx, size_t * mx, int ln)
+static long	fh_get_best_idx(long * arr, long * b_p, long * b_idx, long * mx, int ln)
 {
 	int	mx_idx;
 	int	i;
@@ -65,16 +65,16 @@ static size_t	fh_get_best_idx(size_t * arr, size_t * b_p, size_t * b_idx, size_t
 	return (mx_idx);
 }
 
-void	ft_find_lis_sequence(size_t * array, size_t len, t_moves *moves)
+void	ft_find_lis_sequence(long * array, long len, t_moves *moves)
 {
-	size_t	*best_poss;
-	size_t	*best_idx;
-	size_t	max;
+	long	*best_poss;
+	long	*best_idx;
+	long	max;
 	int		max_idx;
 
 	max = 0;
-	best_poss = malloc(len * sizeof(size_t));
-	best_idx = malloc(len * sizeof(size_t));
+	best_poss = malloc(len * sizeof(long));
+	best_idx = malloc(len * sizeof(long));
 	if (!best_poss || !best_poss)
 		return (free(best_poss), free(best_idx));
 	max_idx = fh_get_best_idx(array, best_poss, best_idx, &max, len);

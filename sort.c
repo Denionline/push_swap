@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:27:10 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/13 23:19:42 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/17 10:56:16 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	fh_push_to_top(t_stack *n, int number)
 {
-	size_t	pos_n;
-	size_t	i;
+	long	pos_n;
+	long	i;
 
 	i = 0;
 	pos_n = get_pos(n, number);
@@ -30,9 +30,9 @@ static void	fh_push_to_top(t_stack *n, int number)
 	}
 }
 
-static int	fh_is_on_better(size_t number, t_moves *moves)
+static int	fh_is_on_better(long number, t_moves *moves)
 {
-	size_t	i;
+	long	i;
 
 	i = 0;
 	while (i < moves->sequence_len)
@@ -59,7 +59,7 @@ void	sort(t_stack *a, t_stack *b)
 {
 	t_moves	actual;
 	t_moves	moves;
-	size_t		i;
+	long	i;
 
 	ft_find_lis_sequence(a->array, a->len, &moves);
 	fh_push_no_sequence(a, b, &moves);

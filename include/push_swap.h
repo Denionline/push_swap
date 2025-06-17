@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:38:54 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/13 23:50:14 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/17 09:29:44 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@ typedef struct s_moves
 	int		 b;
 	int		 reverse_a;
 	int		 reverse_b;
-	size_t * sequence;
-	size_t	 sequence_len;
+	long * sequence;
+	long	 sequence_len;
 	int		 total;
 } t_moves;
 
 typedef struct s_stack
 {
 	char *	 name;
-	size_t * array;
-	size_t	 len;
+	long * array;
+	long	 len;
 } t_stack;
 
 // push_swap.c
@@ -60,19 +60,19 @@ void sort(t_stack * a, t_stack * b);
 void parse(t_stack ** a, t_stack ** b, char ** args, int length);
 
 // calc_moves.c
-t_moves calc_moves(t_stack * a, t_stack * b, size_t number);
+t_moves calc_moves(t_stack * a, t_stack * b, long number);
 
 // find_lis_sequence.c
-void ft_find_lis_sequence(size_t * array, size_t len, t_moves * moves);
+void ft_find_lis_sequence(long * array, long len, t_moves * moves);
 
 // verify.c
 void check_args(t_stack * a, t_stack * b, char ** args);
 void error(t_stack * a, t_stack * b, char ** to_clean);
-void is_there_duplicate(t_stack * a, t_stack * b, size_t * array, int length);
-void is_exceding_limits(t_stack * a, t_stack * b, size_t * array, int len);
+void is_there_duplicate(t_stack * a, t_stack * b, long * array, int length);
+void is_exceding_limits(t_stack * a, t_stack * b, long * array, int len);
 
 // get_number.c
-size_t get_bigger(t_stack * n);
-size_t get_smaller(t_stack * n);
-size_t get_pos(t_stack * n, size_t number);
+long get_bigger(t_stack * n);
+long get_smaller(t_stack * n);
+long get_pos(t_stack * n, long number);
 #endif

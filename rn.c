@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 12:17:20 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/13 23:19:54 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/17 09:29:44 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void rn(t_stack * n, int toprint)
 {
-	size_t tomove;
-	size_t i;
+	long tomove;
+	long i;
 
 	if (n->len <= 1)
 		return;

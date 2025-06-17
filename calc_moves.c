@@ -6,16 +6,16 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 12:36:21 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/13 23:27:00 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/17 09:29:44 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-static size_t get_new_pos(t_stack * b, size_t number)
+static long get_new_pos(t_stack * b, long number)
 {
-	size_t	bigger;
-	size_t	pos;
+	long	bigger;
+	long	pos;
 
 	bigger = get_bigger(b);
 	pos = 0;
@@ -28,11 +28,11 @@ static size_t get_new_pos(t_stack * b, size_t number)
 	return (get_pos(b, bigger) + (bigger < number));
 }
 
-t_moves calc_moves(t_stack * a, t_stack * b, size_t number)
+t_moves calc_moves(t_stack * a, t_stack * b, long number)
 {
 	t_moves	moves;
-	size_t	moves_a;
-	size_t	moves_b;
+	long	moves_a;
+	long	moves_b;
 
 	ft_memset(&moves, 0, sizeof(moves));
 	moves_a = get_new_pos(a, number);
