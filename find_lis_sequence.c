@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:28:20 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/18 00:29:33 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/18 00:48:35 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	fh_get_sequence(long *array, long *b_p, long *b_idx, int pos)
 	}
 }
 
-static long	*fh_get_lis(long *arr, long *b_p, long *b_idx, int max, int idx)
+static long	*fh_get_lis(long *arr, long *b_idx, int max, int idx)
 {
 	long	*lis;
 	int		k;
@@ -40,44 +40,44 @@ static long	*fh_get_lis(long *arr, long *b_p, long *b_idx, int max, int idx)
 		lis[k--] = arr[idx];
 		idx = b_idx[idx];
 	}
-	return (free(b_idx), free(b_p), lis);
+	return (free(b_idx), lis);
 }
 
-static long	fh_get_best_idx(long *arr, long *b_p, long *b_idx, long *mx, int ln)
+static void	fh_get_best_idx(long *arr, long *b_p, long *b_idx, t_moves *moves)
 {
-	int	mx_idx;
-	int	i;
+	int		max_idx;
+	long	max;
+	int		i;
 
-	mx_idx = 0;
+	max = 0;
+	max_idx = 0;
 	i = 0;
-	while (i < ln)
+	while (i < moves->sequence_len)
 	{
 		b_p[i] = 1;
 		b_idx[i] = -1;
 		fh_get_sequence(arr, b_p, b_idx, i);
-		if (b_p[i] > *mx)
+		if (b_p[i] > max)
 		{
-			*mx = b_p[i];
-			mx_idx = i;
+			max = b_p[i];
+			max_idx = i;
 		}
 		i++;
 	}
-	return (mx_idx);
+	moves->sequence_len = max;
+	moves->sequence = fh_get_lis(arr, b_idx, max, max_idx);
+	free(b_p);
 }
 
 void	ft_find_lis_sequence(long *array, long len, t_moves *moves)
 {
 	long	*best_poss;
 	long	*best_idx;
-	long	max;
-	int		max_idx;
 
-	max = 0;
 	best_poss = malloc(len * sizeof(long));
 	best_idx = malloc(len * sizeof(long));
 	if (!best_poss || !best_poss)
 		return (free(best_poss), free(best_idx));
-	max_idx = fh_get_best_idx(array, best_poss, best_idx, &max, len);
-	moves->sequence_len = max;
-	moves->sequence = fh_get_lis(array, best_poss, best_idx, max, max_idx);
+	moves->sequence_len = len;
+	fh_get_best_idx(array, best_poss, best_idx, moves);
 }
