@@ -6,13 +6,13 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:27:10 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/18 00:53:15 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/18 11:25:22 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void sort_three(t_stack * a)
+static void	sort_three(t_stack *a)
 {
 	if (a->array[0] > a->array[1] && a->array[1] > a->array[2])
 		rn(a, TRUE);

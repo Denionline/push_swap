@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:37:48 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/18 00:32:16 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/18 11:24:36 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,9 @@ int	main(int argc, char *argv[])
 
 	parse(&a, &b, argv, argc);
 	sort(a, b);
-	return (free(a->array), free(a), free(b->array), free(b), 0);
+	free(a->array);
+	free(a);
+	free(b->array);
+	free(b);
+	return (0);
 }

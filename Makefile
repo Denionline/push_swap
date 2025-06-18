@@ -6,7 +6,7 @@
 #    By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/17 23:46:38 by dximenes          #+#    #+#              #
-#    Updated: 2025/06/18 00:22:36 by dximenes         ###   ########.fr        #
+#    Updated: 2025/06/18 12:37:28 by dximenes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,8 +75,11 @@ LIBFT_FILES		+= ft_memset
 GNL_FILES		+= get_next_line
 GNL_FILES		+= get_next_line_utils
 
-FILES			+= $(LIBFT_FILES)
+# FILES			+= $(LIBFT_FILES)
 FILES			+= $(GNL_FILES)
+
+SRCS_LIBFT		= $(addprefix ./, $(addsuffix .c, $(LIBFT_FILES)))
+OBJS_LIBFT		= $(addprefix ./, $(addsuffix .o, $(LIBFT_FILES)))
 
 SRCS			= $(addprefix ./, $(addsuffix .c, $(FILES)))
 OBJS			= $(addprefix ./, $(addsuffix .o, $(FILES)))
@@ -98,8 +101,8 @@ RM			= rm -rf
 all: $(ARQUIVE)
 	@printf "$(C_MAGENTA)Program is ready :D$(C_STD)\n"
 
-$(ARQUIVE): $(OBJS)
-	@$(AR) $(ARQUIVE) $(OBJS) $(LIBFT_OBJS)
+$(ARQUIVE): $(OBJS) $(OBJS_LIBFT)
+	@$(AR) $(ARQUIVE) $(OBJS) $(OBJS_LIBFT)
 	@$(CC) $(CFLAGS) $(PUSH_SWAP_FILE) $(ARQUIVE) -o $(PUSH_SWAP)
 	@printf "$(C_GREEN)Success to created $(C_STD)$(PUSH_SWAP)\n"
 
@@ -115,7 +118,7 @@ $(BF):
 	@printf "$(C_GREEN)Success to created $(C_STD)$(CHECKER)\n"
 
 clean:
-	@$(RM) $(OBJS)
+	@$(RM) $(OBJS) $(OBJS_LIBFT)
 
 fclean: clean
 	@$(RM) $(ARQUIVE) $(PUSH_SWAP) $(CHECKER) $(BF)

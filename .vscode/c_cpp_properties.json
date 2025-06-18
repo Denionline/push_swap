@@ -3,10 +3,7 @@
 		{
 			"name": "linux-clang-x64",
 			"includePath": [
-				"${workspaceFolder}/**",
-				"${workspaceFolder}/include",
-				"${workspaceFolder}/include/libft",
-				"${workspaceFolder}/include/get_next_line"
+				"${workspaceFolder}/**"
 			],
 			"compilerPath": "/usr/bin/cc",
 			"cStandard": "${default}",

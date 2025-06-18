@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 11:05:34 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/18 00:30:02 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/18 11:24:09 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,9 @@ int	main(int argc, char *argv[])
 		ft_putendl_fd("\033[0;92mOK\033[0;39m", 1);
 	else
 		ft_putendl_fd("\033[0;91mKO\033[0;39m", 1);
-	return (free(a->array), free(a), free(b->array), free(b), 0);
+	free(a->array);
+	free(a);
+	free(b->array);
+	free(b);
+	return (0);
 }

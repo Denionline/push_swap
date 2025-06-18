@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 00:34:24 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/18 00:34:47 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/18 11:15:21 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ long	get_pos(t_stack *n, long number);
 
 // libft functions
 int		ft_isdigit(int c);
-int		ft_atoi(const char *nbr);
+long	ft_atoi(const char *nbr);
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 char	*ft_substr(char *s, unsigned int start, size_t len);

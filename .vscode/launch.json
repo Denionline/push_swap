@@ -5,7 +5,7 @@
 			"name": "C/C++ Runner: Debug Session",
 			"type": "cppdbg",
 			"request": "launch",
-			"args": [],
+			"args": ["6 5 8 9 2147483648"],
 			"stopAtEntry": false,
 			"externalConsole": false,
 			"cwd": "/home/dximenes/x/m2/push_swap",
