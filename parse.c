@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 17:50:14 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/18 01:00:46 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/22 12:37:14 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ void	parse(t_stack **a, t_stack **b, char **args, int length)
 	int		size;
 	int		i;
 
-	if (length < 2 || !args[1][0])
+	if (length < 2)
+		exit(1);
+	if (!args[1][0])
 		error(NULL, NULL, NULL);
 	values = fh_getarray(args, length);
 	if (!values)

@@ -6,24 +6,32 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:27:10 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/18 11:25:22 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/22 12:44:22 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	sort_three(t_stack *a)
+static void	little_sort(t_stack *a)
 {
-	if (a->array[0] > a->array[1] && a->array[1] > a->array[2])
-		rn(a, TRUE);
-	else if (a->array[2] < a->array[1] && a->array[2] > a->array[0])
-		rrn(a, TRUE);
-	else if (a->array[0] > a->array[1] && a->array[0] > a->array[2])
-		rn(a, TRUE);
-	else if (a->array[2] < a->array[0] && a->array[2] < a->array[1])
-		rrn(a, TRUE);
-	if (a->array[0] > a->array[1])
-		sn(a, TRUE);
+	if (a->len == 2)
+	{
+		if (a->array[0] > a->array[1])
+			sn(a, TRUE);
+	}
+	else
+	{
+		if (a->array[0] > a->array[1] && a->array[1] > a->array[2])
+			rn(a, TRUE);
+		else if (a->array[2] < a->array[1] && a->array[2] > a->array[0])
+			rrn(a, TRUE);
+		else if (a->array[0] > a->array[1] && a->array[0] > a->array[2])
+			rn(a, TRUE);
+		else if (a->array[2] < a->array[0] && a->array[2] < a->array[1])
+			rrn(a, TRUE);
+		if (a->array[0] > a->array[1])
+			sn(a, TRUE);
+	}
 }
 
 static void	fh_push_to_top(t_stack *n, int number)
@@ -75,8 +83,8 @@ void	sort(t_stack *a, t_stack *b)
 	t_moves	moves;
 	long	i;
 
-	if (a->len == 3)
-		return (sort_three(a));
+	if (a->len <= 3)
+		return (little_sort(a));
 	ft_find_lis_sequence(a->array, a->len, &moves);
 	fh_push_no_sequence(a, b, &moves);
 	free(moves.sequence);

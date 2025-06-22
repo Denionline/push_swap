@@ -6,7 +6,7 @@
 #    By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/17 23:46:38 by dximenes          #+#    #+#              #
-#    Updated: 2025/06/18 12:37:28 by dximenes         ###   ########.fr        #
+#    Updated: 2025/06/22 12:36:04 by dximenes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ ARQUIVE			= binary.a
 # **************************************************************************** #
 
 PUSH_SWAP_FILE	= push_swap.c
-CHECKER_FILE	= checker.c
+CHECKER_FILE	= checker_bonus.c
 
 BF				= .bonus
 
