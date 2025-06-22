@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:27:10 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/22 12:44:22 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/22 13:52:17 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	sort(t_stack *a, t_stack *b)
 	t_moves	moves;
 	long	i;
 
-	if (a->len <= 3)
+	if (a->len == 2 || a->len == 3)
 		return (little_sort(a));
 	ft_find_lis_sequence(a->array, a->len, &moves);
 	fh_push_no_sequence(a, b, &moves);
